@@ -1,14 +1,14 @@
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-
 // mobile min 360
 // tablet md min 768
 // desktop lg min 1024
+import Link from "next/link";
+
 export default function Home() {
   return (
-    <div className="md:p-8 lg:py-8 lg:px-[100px]">
-      <Header></Header>
-      <Hero></Hero>
+    <div className="">
+      <Link href={"/landing"} className="text-2xl font-semibold underline">
+        Landing Page
+      </Link>
     </div>
   );
 }
