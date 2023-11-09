@@ -1,6 +1,7 @@
 import BackLink from "@/components/Fragments/BackLink";
 import QuizNumber from "@/components/Fragments/QuizNumber";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const QuizPage = () => {
@@ -11,7 +12,7 @@ const QuizPage = () => {
       </div>
       <div className="pb-7 pt-16">
         <div className="flex justify-between">
-          <BackLink href="/quiz">Batalkan Kuis</BackLink>
+          <BackLink href="/quiz/unfinished">Batalkan Kuis</BackLink>
           <h1 className="text-4xl font-semibold">Kuis Satwa NTB</h1>
           <span className="text-2xl font-medium text-error">Timer 00:15</span>
         </div>
@@ -50,9 +51,12 @@ const QuizPage = () => {
           </form>
         </div>
         <div className="col-start-2 flex flex-row-reverse">
-          <button className="w-fit rounded-md bg-primary px-6 py-3 text-white">
+          <Link
+            href={"/quiz/finish"}
+            className="w-fit rounded-md bg-primary px-6 py-3 text-white"
+          >
             Soal Selanjutnya
-          </button>
+          </Link>
         </div>
         <Image
           src={"/maskot-kuis.svg"}

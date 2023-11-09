@@ -22,7 +22,7 @@ const DashboardQuizPage = () => {
             <h1 className="mb-4 text-3xl font-semibold text-primary">
               Beranda Kuis
             </h1>
-            <p className="mb-6 text-black950">
+            <p className="mb-11 text-black950">
               Jangan lewatkan kesempatan untuk menguji <br /> pengetahuanmu
               tentang satwa-satwa asli NTB. <br /> Ayo, ikuti kuisnya dan
               jadilah juara!
