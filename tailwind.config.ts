@@ -14,7 +14,7 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
-        primary: "#03625D",
+        primary: "#009288",
         secondary: "#AB9564",
         neutral950: "#23272E",
         neutral500: "#64748B",
@@ -22,6 +22,7 @@ const config: Config = {
         black950: "#161616",
         info: "#0A77FF",
         input: "#F8F9FB",
+        error: "#EF4444",
       },
     },
   },

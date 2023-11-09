@@ -1,20 +1,24 @@
+import Link from "next/link";
 import React from "react";
 import { FaFacebook, FaGoogle, FaInstagram } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#23272E] px-8 py-10 md:py-12">
+    <footer className="bg-[#23272E] px-8 py-10 md:py-12 lg:px-[100px]">
       <div className="mb-6 flex flex-col items-center gap-6 md:mb-8 md:flex-row md:justify-between">
         <img src="/logo2.svg" alt="logo" />
-        <ul className="flex gap-2 text-white md:gap-6">
+        <ul className="flex w-full justify-center gap-12 text-white md:gap-6">
           <li>
-            <a href="">Peta Satwa</a>
+            <Link href="/landing">Beranda</Link>
           </li>
           <li>
-            <a href="">Artikel Satwa</a>
+            <Link href="/map">Peta</Link>
           </li>
           <li>
-            <a href="">Kuis Satwa</a>
+            <Link href="/news">Berita</Link>
+          </li>
+          <li>
+            <Link href="/quiz">Kuis</Link>
           </li>
         </ul>
         <div className="flex items-center gap-6">
@@ -28,7 +32,9 @@ const Footer = () => {
           <span className="font-medium text-white">Privacy Policy</span>
           <span className="font-medium text-white">Terms & Conditions</span>
         </p>
-        <p className="text-white">© 2023 - EcoSaver. All Rights Reserved.</p>
+        <p className="text-sm text-white">
+          © 2023 - EcoSaver. All Rights Reserved.
+        </p>
       </div>
     </footer>
   );

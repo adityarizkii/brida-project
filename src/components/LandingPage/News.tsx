@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const News = () => {
@@ -55,27 +56,14 @@ const News = () => {
             </span>
           </div>
         </div>
-        <div className="card mx-auto max-w-[300px] rounded-lg border shadow-xl md:max-w-[336px] lg:max-w-[370px]">
-          <div className="rounded-lg">
-            <img src="/burung.png" alt="burung" />
-          </div>
-          <div className="p-4">
-            <span className="mb-2 text-sm font-medium text-blue-500">
-              25 Apr 2023
-            </span>
-            <h2 className="mb-4 font-semibold text-neutral950">
-              Perburuan liar terjadi di Dompu menyebabkan burung turu
-            </h2>
-            <span className="font-semibold text-blue-500">
-              Baca Selengkapnya
-            </span>
-          </div>
-        </div>
       </div>
       <div className="flex justify-center">
-        <button className="rounded-md border border-primary px-4 py-1.5 text-primary lg:px-8 lg:py-3.5 lg:text-2xl">
+        <Link
+          href={"/news"}
+          className="rounded-md border border-primary px-4 py-1.5 text-primary lg:px-8 lg:py-3.5 lg:text-2xl"
+        >
           Selengkapnya
-        </button>
+        </Link>
       </div>
     </div>
   );

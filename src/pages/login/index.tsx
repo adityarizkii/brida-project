@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
-const SignInPage = () => {
+const LoginPage = () => {
   return (
     <div className="grid h-screen lg:grid-cols-2">
       <div className="flex flex-col justify-center rounded-3xl border shadow-2xl md:px-28">
@@ -89,4 +89,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default LoginPage;
