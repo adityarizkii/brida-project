@@ -22,7 +22,7 @@ const HeaderLogin = (props: propsType) => {
         </div>
         <ul className="flex gap-12">
           <li className="font-medium text-primary">
-            <Link href="/landing">Beranda</Link>
+            <Link href="/">Beranda</Link>
           </li>
           <li className="font-medium">
             <Link href="/map">Peta</Link>
