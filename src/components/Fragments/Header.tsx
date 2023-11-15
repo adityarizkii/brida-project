@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { Dispatch, SetStateAction } from "react";
 
@@ -11,26 +12,39 @@ type propsType = {
 
 const Header = (props: propsType) => {
   const { classname, setIsSidebarActive, isSidebarActive } = props;
+  const pathname = usePathname().split("/");
 
   return (
     <>
       <div
         className={`fixed top-0 z-10 flex w-full items-center justify-between border-b bg-white shadow-md ${classname}`}
       >
-        <div className="relative h-12 w-36">
+        <div className="relative h-12 w-36 ">
           <Image src={"/logo.svg"} alt="logo" fill />
         </div>
-        <ul className="flex gap-12">
-          <li className="font-medium text-primary">
+        <ul className="hidden gap-12 lg:flex">
+          <li className={`font-medium ${!pathname[1] ? "text-primary" : ""}`}>
             <Link href="/">Beranda</Link>
           </li>
-          <li className="font-medium">
+          <li
+            className={`font-medium ${
+              pathname[1] === "map" ? "text-primary" : ""
+            }`}
+          >
             <Link href="/map">Peta</Link>
           </li>
-          <li className="font-medium">
+          <li
+            className={`font-medium ${
+              pathname[1] === "news" ? "text-primary" : ""
+            }`}
+          >
             <Link href="/news">Berita</Link>
           </li>
-          <li className="font-medium">
+          <li
+            className={`font-medium ${
+              pathname[1] === "quiz" ? "text-primary" : ""
+            }`}
+          >
             <Link href="/login">Kuis</Link>
           </li>
         </ul>
@@ -43,7 +57,7 @@ const Header = (props: propsType) => {
             height={25}
           />
         </div> */}
-        <div className="flex gap-4">
+        <div className="hidden gap-4 lg:flex">
           <Link
             href={"/login"}
             className="rounded-lg bg-primary px-4 py-2.5 text-white"

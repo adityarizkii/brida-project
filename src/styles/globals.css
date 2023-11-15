@@ -11,3 +11,8 @@
 .font-poppins {
   font-family: "Poppins", sans-serif;
 }
+
+.leaflet-container {
+  height: 500px;
+  z-index: 0;
+}

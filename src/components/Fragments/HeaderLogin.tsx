@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { Dispatch, SetStateAction } from "react";
 
@@ -11,6 +12,7 @@ type propsType = {
 
 const HeaderLogin = (props: propsType) => {
   const { classname, setIsSidebarActive, isSidebarActive } = props;
+  const pathname = usePathname().split("/");
 
   return (
     <>
@@ -21,7 +23,7 @@ const HeaderLogin = (props: propsType) => {
           <Image src={"/logo.svg"} alt="logo" fill />
         </div>
         <ul className="flex gap-12">
-          <li className="font-medium text-primary">
+          <li className="font-medium">
             <Link href="/">Beranda</Link>
           </li>
           <li className="font-medium">
@@ -30,7 +32,7 @@ const HeaderLogin = (props: propsType) => {
           <li className="font-medium">
             <Link href="/news">Berita</Link>
           </li>
-          <li className="font-medium">
+          <li className="font-medium text-primary">
             <Link href="/login">Kuis</Link>
           </li>
         </ul>

@@ -1,10 +1,11 @@
 import Header from "@/components/Fragments/Header";
 import Footer from "@/components/Fragments/Footer";
 import React, { useState } from "react";
-import Image from "next/image";
+import Map from "@/components/Map";
 
 const MapPage = () => {
   const [isSidebarActive, setisSidebarActive] = useState<boolean>(false);
+
   return (
     <div>
       <Header
@@ -28,9 +29,7 @@ const MapPage = () => {
             Selamat menjelajahi keajaiban satwa NTB!
           </p>
         </div>
-        <div className="relative h-[500px] w-full overflow-hidden">
-          <Image src="/peta.png" alt="peta" fill className="object-cover" />
-        </div>
+        <Map />
       </div>
       <Footer></Footer>
     </div>

@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 
 const LoginPage = () => {
   return (
     <div className="grid h-screen lg:grid-cols-2">
       <div className="flex flex-col justify-center rounded-3xl border shadow-2xl md:px-28">
         <Link
-          href="/landing"
+          href="/"
           className="mb-14 flex items-center gap-2 font-semibold text-primary"
         >
           <Image
@@ -16,12 +16,9 @@ const LoginPage = () => {
             width={24}
             height={24}
           />
-          <Link
-            href={"/landing"}
-            className="hidden text-sm font-semibold md:inline-block"
-          >
+          <span className="hidden text-sm font-semibold md:inline-block">
             Kembali ke Halaman Utama
-          </Link>
+          </span>
           <span className="text-sm font-semibold md:hidden">Kembali</span>
         </Link>
         <h1 className="mb-6 text-center text-3xl font-bold">Sign In</h1>
@@ -67,9 +64,12 @@ const LoginPage = () => {
           </Link>
           <div className="">
             <span className="text-neutral500">Belum punya akun? </span>
-            <a href="" className="font-semibold text-info underline">
+            <Link
+              href="/register"
+              className="font-semibold text-info underline"
+            >
               Daftar di sini
-            </a>
+            </Link>
           </div>
         </form>
       </div>

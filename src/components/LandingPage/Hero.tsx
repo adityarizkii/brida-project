@@ -14,9 +14,12 @@ const Hero = () => {
           alam indah nan asri.
         </p>
         <div className="mb-16 flex gap-4 md:mb-[70px] lg:mb-[138px]">
-          <button className="rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white">
+          <Link
+            href={"/login"}
+            className="rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white"
+          >
             Ikuti Quiz
-          </button>
+          </Link>
           <Link
             href="/map"
             className="rounded-lg border-2 border-primary px-4 py-2.5 text-sm font-semibold text-primary"
