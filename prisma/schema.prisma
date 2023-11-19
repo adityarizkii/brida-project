@@ -19,3 +19,11 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
+model DataSatwa {
+  idSatwa String @id @default(uuid())
+  name String
+  description String
+  location String?
+  image String?  
+}
+
