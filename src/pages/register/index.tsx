@@ -90,7 +90,7 @@ const RegisterPage = () => {
           </div>
           <Link
             href={"/quiz"}
-            className="rounded-md bg-primary py-2.5 text-center font-semibold text-white"
+            className="rounded-md bg-primary py-2.5 text-center font-semibold text-white hover:bg-primaryHover"
           >
             Sign Up
           </Link>

@@ -4,10 +4,18 @@ import React from "react";
 const Quiz = () => {
   return (
     <div className="mb-14 grid md:grid-cols-2 md:gap-11 lg:grid-cols-3">
-      <div className="hidden items-center justify-center lg:flex">
+      <div
+        className="hidden items-center justify-center lg:flex"
+        data-aos="zoom-in"
+        data-aos-delay="200"
+      >
         <img src="/maskot1.svg" alt="maskot" />
       </div>
-      <div className="left mb-6 flex flex-col items-center px-2 py-5  text-center">
+      <div
+        className="left mb-6 flex flex-col items-center px-2 py-5  text-center"
+        data-aos="zoom-in"
+        data-aos-delay="400"
+      >
         <h1 className="mb-6 text-2xl font-semibold text-neutral950 md:text-4xl">
           Kuis Satwa NTB
         </h1>
@@ -18,12 +26,12 @@ const Quiz = () => {
         </p>
         <Link
           href={"/login"}
-          className="rounded-md bg-primary px-5 py-3 font-semibold text-white "
+          className="rounded-md bg-primary px-5 py-3 font-semibold text-white duration-200 hover:bg-primaryHover"
         >
           Mulai Kuis
         </Link>
       </div>
-      <div className="right">
+      <div className="right" data-aos="zoom-in" data-aos-delay="600">
         <div className="rounded-md px-5 py-8 shadow-2xl md:max-w-[350px]">
           <h1 className="mb-14 text-center text-2xl font-semibold text-primary">
             Leaderboard Kuis

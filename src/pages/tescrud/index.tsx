@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 
-type User = {
-  id: string;
+type DataSatwaType = {
+  idSatwa: string;
   name: string;
-  age: number;
-  createdAt: Date;
-  updatedAt: Date;
+  description: string;
+  location: string;
+  image: string;
 }[];
 
 const index = () => {
-  const [dataJSON, setDataJSON] = useState<User>();
+  const [dataJSON, setDataJSON] = useState<DataSatwaType>();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/hello");
+        const response = await fetch("http://localhost:3000/api/data-satwa");
         const result = await response.json();
 
         setDataJSON(result);
@@ -42,9 +42,9 @@ const index = () => {
         </thead>
         <tbody>
           {dataJSON?.map((data) => (
-            <tr className="border-b border-gray-700" key={data.id}>
+            <tr className="border-b border-gray-700" key={data.idSatwa}>
               <td className="px-6 py-3">{data.name}</td>
-              <td className="px-6 py-3 text-center">{data.age}</td>
+              <td className="px-6 py-3 text-center">{data.location}</td>
             </tr>
           ))}
         </tbody>

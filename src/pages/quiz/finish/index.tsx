@@ -26,7 +26,7 @@ const FinishPage = () => {
             <div className="mb-4 text-4xl font-medium">Skor kamu</div>
             <div className="mb-16 text-5xl font-medium">95</div>
             <Link
-              href={"/quiz/finish"}
+              href={"/quiz/review"}
               className="text-xl font-medium text-info underline"
             >
               Lihat Jawaban

@@ -23,25 +23,29 @@ const Header = (props: propsType) => {
           <Image src={"/logo.svg"} alt="logo" fill />
         </div>
         <ul className="hidden gap-12 lg:flex">
-          <li className={`font-medium ${!pathname[1] ? "text-primary" : ""}`}>
+          <li
+            className={`font-medium transition duration-200 hover:-translate-y-1 ${
+              !pathname[1] ? "text-primary" : ""
+            }`}
+          >
             <Link href="/">Beranda</Link>
           </li>
           <li
-            className={`font-medium ${
+            className={`font-medium transition duration-200 hover:-translate-y-1 ${
               pathname[1] === "map" ? "text-primary" : ""
             }`}
           >
             <Link href="/map">Peta</Link>
           </li>
           <li
-            className={`font-medium ${
+            className={`font-medium transition duration-200 hover:-translate-y-1 ${
               pathname[1] === "news" ? "text-primary" : ""
             }`}
           >
             <Link href="/news">Berita</Link>
           </li>
           <li
-            className={`font-medium ${
+            className={`font-medium transition duration-200 hover:-translate-y-1 ${
               pathname[1] === "quiz" ? "text-primary" : ""
             }`}
           >
@@ -60,13 +64,13 @@ const Header = (props: propsType) => {
         <div className="hidden gap-4 lg:flex">
           <Link
             href={"/login"}
-            className="rounded-lg bg-primary px-4 py-2.5 text-white"
+            className="hover:bg-primaryHover rounded-md bg-primary px-4 py-2.5 text-white duration-200"
           >
             Masuk
           </Link>
           <Link
             href={"/register"}
-            className="rounded-lg border border-primary bg-white px-4 py-2.5 text-primary"
+            className="hover:bg-primaryHover rounded-md border border-primary bg-white px-4 py-2.5 text-primary duration-200 hover:text-white"
           >
             Daftar
           </Link>

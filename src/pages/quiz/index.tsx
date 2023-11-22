@@ -18,7 +18,7 @@ const DashboardQuizPage = () => {
       <div className="bg-slate-100 px-4 pb-20 pt-[130px] lg:px-[180px]">
         {/* hero */}
         <div className=" mb-12 flex justify-between bg-white">
-          <div className="py-10 pl-9">
+          <div className="py-10 pl-9" data-aos="fade-right">
             <h1 className="mb-4 text-3xl font-semibold text-primary">
               Beranda Kuis
             </h1>
@@ -29,12 +29,12 @@ const DashboardQuizPage = () => {
             </p>
             <Link
               href={"/quiz/start"}
-              className="rounded-lg bg-primary px-7 py-4 text-xl font-semibold text-white"
+              className="rounded-lg bg-primary px-7 py-4 text-xl font-semibold text-white hover:bg-primaryHover"
             >
               Mulai Kuis
             </Link>
           </div>
-          <div className="relative h-[300px] w-[300px]">
+          <div className="relative h-[300px] w-[300px]" data-aos="fade-left">
             <Image src={"/beranda-kuis.svg"} alt="img" fill />
           </div>
         </div>
@@ -54,18 +54,18 @@ const DashboardQuizPage = () => {
             </h2>
             <div className="mx-auto grid w-[665px] grid-cols-2 gap-16">
               <div className="flex flex-col gap-4">
-                <ScoreBar></ScoreBar>
-                <ScoreBar></ScoreBar>
-                <ScoreBar></ScoreBar>
-                <ScoreBar></ScoreBar>
-                <ScoreBar></ScoreBar>
+                <ScoreBar dataAos="zoom-in" dataAosDelay="100"></ScoreBar>
+                <ScoreBar dataAos="zoom-in" dataAosDelay="200"></ScoreBar>
+                <ScoreBar dataAos="zoom-in" dataAosDelay="300"></ScoreBar>
+                <ScoreBar dataAos="zoom-in" dataAosDelay="400"></ScoreBar>
+                <ScoreBar dataAos="zoom-in" dataAosDelay="500"></ScoreBar>
               </div>
               <div className="flex flex-col gap-4">
-                <ScoreBar></ScoreBar>
-                <ScoreBar></ScoreBar>
-                <ScoreBar></ScoreBar>
-                <ScoreBar></ScoreBar>
-                <ScoreBar></ScoreBar>
+                <ScoreBar dataAos="zoom-in" dataAosDelay="600"></ScoreBar>
+                <ScoreBar dataAos="zoom-in" dataAosDelay="700"></ScoreBar>
+                <ScoreBar dataAos="zoom-in" dataAosDelay="800"></ScoreBar>
+                <ScoreBar dataAos="zoom-in" dataAosDelay="900"></ScoreBar>
+                <ScoreBar dataAos="zoom-in" dataAosDelay="1000"></ScoreBar>
               </div>
             </div>
           </div>

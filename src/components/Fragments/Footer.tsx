@@ -9,7 +9,7 @@ const Footer = () => {
         <img src="/logo2.svg" alt="logo" />
         <ul className="flex w-full justify-center gap-12 text-white md:gap-6">
           <li>
-            <Link href="/landing">Beranda</Link>
+            <Link href="/">Beranda</Link>
           </li>
           <li>
             <Link href="/map">Peta</Link>

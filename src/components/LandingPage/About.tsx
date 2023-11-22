@@ -3,7 +3,10 @@ import React from "react";
 const About = () => {
   return (
     <div className="mb-24">
-      <div className="mx-auto mb-9 max-w-[800px] text-center">
+      <div
+        className="mx-auto mb-9 max-w-[800px] text-center"
+        data-aos="fade-down"
+      >
         <h1 className="mb-4 text-2xl font-semibold text-neutral950 md:text-[32px] lg:text-4xl">
           Jelajahi Bersama Kami
         </h1>
@@ -14,7 +17,7 @@ const About = () => {
         </p>
       </div>
       <div className="grid md:grid-cols-2">
-        <div className="mx-auto hidden md:block">
+        <div className="mx-auto hidden md:block" data-aos="fade-right">
           <img
             src="/duarusa.svg"
             alt="dua rusa"
@@ -26,7 +29,7 @@ const About = () => {
             className="w-[200px] lg:w-[300px]"
           />
         </div>
-        <div className="flex flex-col gap-9">
+        <div className="flex flex-col gap-9" data-aos="fade-left">
           <div className="flex gap-4 rounded-md border px-7 py-6 shadow-md md:max-w-[400px] lg:h-[150px] lg:max-w-[600px] lg:py-[30px]">
             <div className="">
               <div className="w-[40px] lg:w-[45px]">

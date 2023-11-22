@@ -23,6 +23,7 @@ const config: Config = {
         info: "#0A77FF",
         input: "#F8F9FB",
         error: "#EF4444",
+        primaryHover: "#00736D",
       },
     },
   },

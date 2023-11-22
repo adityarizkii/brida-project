@@ -58,7 +58,7 @@ const LoginPage = () => {
           </div>
           <Link
             href={"/quiz"}
-            className="rounded-md bg-primary py-3 text-center font-semibold text-white"
+            className="rounded-md bg-primary py-3 text-center font-semibold text-white hover:bg-primaryHover"
           >
             Sign In
           </Link>
