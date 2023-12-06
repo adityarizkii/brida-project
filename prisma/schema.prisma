@@ -38,3 +38,18 @@ model Soal {
   image String?
 }
 
+model Artikel {
+  idArtikel String @id @default(uuid())
+  title String
+  url String
+  year DateTime?
+  image String?
+}
+
+model Admin {
+  idAdmin String @id @default(uuid())
+  name String
+  email String
+  password String
+}
+
