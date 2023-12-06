@@ -1,11 +1,11 @@
 import React from "react";
 
 const InputForm = (props: any) => {
-  const { icon, children, type, id } = props;
+  const { icon, children, type, id, label } = props;
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={id} className="text-sm font-medium">
-        Email
+        {label}
       </label>
       <div className="flex items-center rounded-md border bg-[#F8F9FB] pl-3">
         {icon}
@@ -14,6 +14,7 @@ const InputForm = (props: any) => {
           id={id}
           className="w-full bg-transparent p-3 outline-none"
           placeholder={children}
+          name={id}
         />
       </div>
     </div>

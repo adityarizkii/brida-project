@@ -21,7 +21,7 @@ const FinishPage = () => {
         <div className="flex justify-center">
           <div className="mt-16 max-w-[330px] text-center">
             <h2 className="mb-14 text-4xl font-medium leading-[1.5]">
-              Selamat Kepada Draco Malfoy!
+              Selamat Kepada Kevin!
             </h2>
             <div className="mb-4 text-4xl font-medium">Skor kamu</div>
             <div className="mb-16 text-5xl font-medium">95</div>
@@ -35,11 +35,11 @@ const FinishPage = () => {
         </div>
         <div className="flex justify-center">
           <div className="flex w-[315px] flex-col gap-5 rounded-lg px-4 py-9 shadow-xl">
-            <h3 className="text-xl font-medium">Peringkat Kuis</h3>
-            <ScoreBar></ScoreBar>
-            <ScoreBar></ScoreBar>
-            <ScoreBar></ScoreBar>
-            <ScoreBar></ScoreBar>
+            <h3 className="text-center text-xl font-medium">Peringkat Kuis</h3>
+            <ScoreBar dataAos="fade-right" dataAosDelay="200"></ScoreBar>
+            <ScoreBar dataAos="fade-right" dataAosDelay="400"></ScoreBar>
+            <ScoreBar dataAos="fade-right" dataAosDelay="600"></ScoreBar>
+            <ScoreBar dataAos="fade-right" dataAosDelay="800"></ScoreBar>
           </div>
         </div>
       </div>

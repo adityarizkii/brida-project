@@ -1,11 +1,38 @@
 import InputForm from "@/components/Fragments/InputForm";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { FormEvent } from "react";
 import { AiOutlineMail } from "react-icons/ai";
 import { GoPerson, GoLock, GoUnlock } from "react-icons/go";
 
+type UserType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
+
 const RegisterPage = () => {
+  const router = useRouter();
+
+  const handleSignUp = (e: FormEvent) => {
+    e.preventDefault();
+    const Form = e.target as HTMLFormElement;
+    const formData = new FormData(Form);
+
+    const formDataObject = Object.fromEntries(formData.entries()) as UserType;
+    const { confirmPassword, ...data } = formDataObject;
+
+    fetch("http://localhost:3000/api/user", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+
+    router.push("/quiz");
+  };
+
   return (
     <div className="grid h-screen lg:grid-cols-2">
       <div className="">
@@ -41,11 +68,12 @@ const RegisterPage = () => {
         <h1 className="mb-6 text-center text-4xl font-bold text-neutral950">
           Sign Up
         </h1>
-        <form action="" className="flex flex-col gap-4">
+        <form className="flex flex-col gap-4" onSubmit={handleSignUp}>
           <InputForm
             icon={<AiOutlineMail className="text-xl" />}
             id="email"
             type="email"
+            label="Email"
           >
             Masukkan Email anda
           </InputForm>
@@ -53,6 +81,7 @@ const RegisterPage = () => {
             icon={<GoPerson className="text-xl" />}
             id="firstName"
             type="text"
+            label="First Name"
           >
             Masukkan nama pertama
           </InputForm>
@@ -60,6 +89,7 @@ const RegisterPage = () => {
             icon={<GoPerson className="text-xl" />}
             id="lastName"
             type="text"
+            label="Last Name"
           >
             Masukkan nama terakhir
           </InputForm>
@@ -67,6 +97,7 @@ const RegisterPage = () => {
             icon={<GoUnlock className="text-xl" />}
             id="password"
             type="password"
+            label="Password"
           >
             Masukkan kata sandi
           </InputForm>
@@ -74,10 +105,10 @@ const RegisterPage = () => {
             icon={<GoLock className="text-xl" />}
             id="confirmPassword"
             type="password"
+            label="Confirm Password"
           >
             Konfirmasi kata sandi
           </InputForm>
-
           <div className="flex items-center gap-3 font-medium">
             <input type="checkbox" className="h-5 w-5" />
             <span>
@@ -88,12 +119,12 @@ const RegisterPage = () => {
               yang berlaku
             </span>
           </div>
-          <Link
-            href={"/quiz"}
+          <button
+            type="submit"
             className="rounded-md bg-primary py-2.5 text-center font-semibold text-white hover:bg-primaryHover"
           >
             Sign Up
-          </Link>
+          </button>
           <div className="">
             <span className="text-neutral500">Sudah punya akun? </span>
             <Link href="/login" className="font-semibold text-info underline">

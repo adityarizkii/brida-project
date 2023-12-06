@@ -37,7 +37,7 @@ const HeaderLogin = (props: propsType) => {
           </li>
         </ul>
         <div className="flex gap-3">
-          <h3 className="text-lg font-semibold text-primary">Draco Malfoy</h3>
+          <h3 className="text-lg font-semibold text-primary">Kevin</h3>
           <Image
             src={"/arrow-down.svg"}
             alt="arrow-down"

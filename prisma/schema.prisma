@@ -13,10 +13,10 @@ datasource db {
 
 model User {
   id String @id @default(uuid())
-  name String
-  age Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  email String
+  firstName String
+  lastName String
+  password String
 }
 
 model DataSatwa {
@@ -25,5 +25,12 @@ model DataSatwa {
   description String
   location String?
   image String?  
+}
+
+model Soal {
+  idSoal String @id @default(uuid())
+  soal String
+  jawaban String
+  opsi String[]
 }
 

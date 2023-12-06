@@ -29,8 +29,8 @@ const Footer = () => {
       </div>
       <div className="flex flex-col gap-6 border-t pt-6 md:flex-row-reverse md:justify-between md:pt-8">
         <p className="flex justify-between md:gap-6">
-          <span className="font-medium text-white">Privacy Policy</span>
-          <span className="font-medium text-white">Terms & Conditions</span>
+          <span className="font-medium text-white">Tentang Kami</span>
+          <span className="font-medium text-white">Syarat & Ketentuan</span>
         </p>
         <p className="text-sm text-white">
           © 2023 - EcoSaver. All Rights Reserved.

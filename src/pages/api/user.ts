@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@/lib/prisma";
 
@@ -16,8 +15,7 @@ async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
   try {
     const result = await prisma.user.create({
       data: {
-        name: dataFormClient.name,
-        age: JSON.parse(dataFormClient.age),
+        ...dataFormClient,
       },
     });
 

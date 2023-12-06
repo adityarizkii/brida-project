@@ -11,7 +11,7 @@ const ScoreBar = ({ dataAos = "", dataAosDelay = "" }: PropsType) => {
       data-aos={dataAos}
       data-aos-delay={dataAosDelay}
     >
-      <span>1. Hermione</span>
+      <span>1. Kevin</span>
       <span>100</span>
     </div>
   );
