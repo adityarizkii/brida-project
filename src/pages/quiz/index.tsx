@@ -5,12 +5,15 @@ import Image from "next/image";
 import ScoreBar from "@/components/Fragments/ScoreBar";
 import Link from "next/link";
 import HeaderLogin from "@/components/Fragments/HeaderLogin";
+import { useLoginContext } from "@/context/loginContext";
 
 const DashboardQuizPage = () => {
   const [isSidebarActive, setisSidebarActive] = useState<boolean>(false);
+  const { status } = useLoginContext();
+
   return (
     <div className="">
-      <HeaderLogin
+      <Header
         classname="px-4 py-5 lg:px-[100px]"
         isSidebarActive={isSidebarActive}
         setIsSidebarActive={setisSidebarActive}
@@ -20,7 +23,7 @@ const DashboardQuizPage = () => {
         <div className=" mb-12 flex justify-between bg-white">
           <div className="py-10 pl-9" data-aos="fade-right">
             <h1 className="mb-4 text-3xl font-semibold text-primary">
-              Beranda Kuis
+              Beranda Kuis {JSON.stringify(status)}
             </h1>
             <p className="mb-11 text-black950">
               Jangan lewatkan kesempatan untuk menguji <br /> pengetahuanmu

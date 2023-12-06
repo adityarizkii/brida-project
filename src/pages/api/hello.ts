@@ -11,27 +11,9 @@ async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
-  const dataFormClient = JSON.parse(req.body);
-  try {
-    const result = await prisma.user.create({
-      data: {
-        name: dataFormClient.name,
-        age: JSON.parse(dataFormClient.age),
-      },
-    });
-
-    res.status(200).json(result);
-  } catch (error) {
-    res.status(500).json({ message: "terjadi kesalahan saat menyimpan data" });
-  }
-}
-
 function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
     handleGetMethod(req, res);
-  } else if (req.method === "POST") {
-    handlePostMethod(req, res);
   }
 }
 

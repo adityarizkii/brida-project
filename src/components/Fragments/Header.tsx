@@ -1,3 +1,4 @@
+import { useLoginContext } from "@/context/loginContext";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,6 +14,7 @@ type propsType = {
 const Header = (props: propsType) => {
   const { classname, setIsSidebarActive, isSidebarActive } = props;
   const pathname = usePathname().split("/");
+  const { status, data } = useLoginContext();
 
   return (
     <>
@@ -52,29 +54,36 @@ const Header = (props: propsType) => {
             <Link href="/login">Kuis</Link>
           </li>
         </ul>
-        {/* <div className="flex gap-3">
-          <h3 className="text-lg font-semibold text-primary">Draco Malfoy</h3>
-          <Image
-            src={"/arrow-down.svg"}
-            alt="arrow-down"
-            width={25}
-            height={25}
-          />
-        </div> */}
-        <div className="hidden gap-4 lg:flex">
-          <Link
-            href={"/login"}
-            className="hover:bg-primaryHover rounded-md bg-primary px-4 py-2.5 text-white duration-200"
-          >
-            Masuk
-          </Link>
-          <Link
-            href={"/register"}
-            className="hover:bg-primaryHover rounded-md border border-primary bg-white px-4 py-2.5 text-primary duration-200 hover:text-white"
-          >
-            Daftar
-          </Link>
-        </div>
+        {status ? (
+          <div className="flex gap-3">
+            <h3 className="text-lg font-semibold text-primary">
+              {data.firstName} {data.lastName}
+            </h3>
+            <Image
+              src={"/arrow-down.svg"}
+              alt="arrow-down"
+              width={25}
+              height={25}
+            />
+          </div>
+        ) : (
+          <div className="hidden gap-4 lg:flex">
+            <Link
+              href={"/login"}
+              className="rounded-md bg-primary px-4 py-2.5 text-white duration-200 hover:bg-primaryHover"
+            >
+              Masuk
+            </Link>
+            <Link
+              href={"/register"}
+              className="rounded-md border border-primary bg-white px-4 py-2.5 text-primary duration-200 hover:bg-primaryHover hover:text-white"
+            >
+              Daftar
+            </Link>
+          </div>
+        )}
+
+        {/* mobile */}
         <button onClick={() => setIsSidebarActive(true)} className="lg:hidden">
           <Image
             src={"/burger-menu.svg"}

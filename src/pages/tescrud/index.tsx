@@ -1,3 +1,4 @@
+import { useLoginContext } from "@/context/loginContext";
 import React, { FormEvent, useEffect, useState } from "react";
 
 type DataSatwaType = {
@@ -10,12 +11,16 @@ type DataSatwaType = {
 
 type UserType = {
   id: string;
-  name: string;
-  age: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  confirmPassword: string;
 };
 
 const index = () => {
   const [dataJSON, setDataJSON] = useState<UserType[]>();
+  const { status, setStatus, data, setData } = useLoginContext();
 
   const fetchData = async () => {
     try {
@@ -50,6 +55,12 @@ const index = () => {
 
   useEffect(() => {
     fetchData();
+    setStatus(true);
+    setData({
+      email: "brody@gmail.com",
+      firstName: "lalu",
+      lastName: "brody",
+    });
   }, []);
 
   return (
@@ -70,8 +81,8 @@ const index = () => {
         <tbody>
           {dataJSON?.map((data) => (
             <tr className="border-b border-gray-700" key={data.id}>
-              <td className="px-6 py-3">{data.name}</td>
-              <td className="px-6 py-3 text-center">{data.age}</td>
+              <td className="px-6 py-3">{data.email}</td>
+              <td className="px-6 py-3 text-center">{data.password}</td>
             </tr>
           ))}
         </tbody>
@@ -102,6 +113,11 @@ const index = () => {
           Sign Up
         </button>
       </form>
+      <div className="mt-40">
+        <h3>{JSON.stringify(status)}</h3>
+        <h3>{data.email}</h3>
+        <h3>{`${data.firstName} ${data.lastName}`}</h3>
+      </div>
     </div>
   );
 };

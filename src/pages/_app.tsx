@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { LoginContextProvider } from "@/context/loginContext";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -14,5 +15,9 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   }, []);
 
-  return <Component {...pageProps} />;
+  return (
+    <LoginContextProvider>
+      <Component {...pageProps} />
+    </LoginContextProvider>
+  );
 }

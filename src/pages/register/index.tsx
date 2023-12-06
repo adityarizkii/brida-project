@@ -1,4 +1,5 @@
 import InputForm from "@/components/Fragments/InputForm";
+import { useLoginContext } from "@/context/loginContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -16,6 +17,7 @@ type UserType = {
 
 const RegisterPage = () => {
   const router = useRouter();
+  const { status, setStatus, data, setData } = useLoginContext();
 
   const handleSignUp = (e: FormEvent) => {
     e.preventDefault();
@@ -28,9 +30,15 @@ const RegisterPage = () => {
     fetch("http://localhost:3000/api/user", {
       method: "POST",
       body: JSON.stringify(data),
+    }).then((res) => {
+      setStatus(true);
+      setData({
+        email: data.email,
+        firstName: data.firstName,
+        lastName: data.lastName,
+      });
+      router.push("/quiz");
     });
-
-    router.push("/quiz");
   };
 
   return (
@@ -67,6 +75,7 @@ const RegisterPage = () => {
       <div className="flex flex-col justify-center rounded-3xl border py-12 shadow-2xl md:px-28">
         <h1 className="mb-6 text-center text-4xl font-bold text-neutral950">
           Sign Up
+          {JSON.stringify(status)}
         </h1>
         <form className="flex flex-col gap-4" onSubmit={handleSignUp}>
           <InputForm
