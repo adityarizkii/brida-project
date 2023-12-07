@@ -1,3 +1,4 @@
+import CustomMarker from "@/components/Fragments/CustomMarker";
 import { useLoginContext } from "@/context/loginContext";
 import React, { FormEvent, useEffect, useState } from "react";
 
@@ -64,10 +65,10 @@ const index = () => {
   }, []);
 
   return (
-    <div>
+    <div className="px-[100px]">
       <h1 className="my-4 text-center text-xl font-medium">database request</h1>
 
-      <table className="mx-auto w-[300px] overflow-hidden rounded-md border bg-gray-100">
+      {/* <table className="mx-auto w-[300px] overflow-hidden rounded-md border bg-gray-100">
         <thead className="bg-gray-700 text-gray-200">
           <tr>
             <th scope="col" className="px-6 py-3">
@@ -86,7 +87,7 @@ const index = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
       <form
         onSubmit={handleSubmit}
         className="mx-auto mt-4 w-1/2 border border-black"
