@@ -76,7 +76,12 @@ const DetailSatwaPage = () => {
                   <IoIosArrowBack size={24} />
                 </Link>
               </div>
-              <Image src="/kucing1.png" alt="satwa" width={300} height={300} />
+              <Image
+                src={"/kucing1.png"}
+                alt="satwa"
+                width={300}
+                height={300}
+              />
               <div className="rounded-md border p-1 hover:bg-slate-300 lg:p-2">
                 <Link href={"/map/detail/" + nextIdx}>
                   <IoIosArrowForward size={24} />

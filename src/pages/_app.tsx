@@ -4,6 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { LoginContextProvider } from "@/context/loginContext";
+import { CookiesProvider } from "react-cookie";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -16,8 +17,10 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <LoginContextProvider>
-      <Component {...pageProps} />
-    </LoginContextProvider>
+    <CookiesProvider>
+      <LoginContextProvider>
+        <Component {...pageProps} />
+      </LoginContextProvider>
+    </CookiesProvider>
   );
 }

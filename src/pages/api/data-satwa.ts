@@ -10,16 +10,9 @@ async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
-  try {
-  } catch (error) {}
-}
-
 function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {
     handleGetMethod(req, res);
-  } else if (req.method === "POST") {
-    handlePostMethod(req, res);
   }
 }
 

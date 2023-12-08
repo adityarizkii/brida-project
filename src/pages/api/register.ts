@@ -1,34 +1,57 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
+import jwt from "jsonwebtoken";
+import argon2 from "argon2";
 
-async function handleGetMethod(req: NextApiRequest, res: NextApiResponse) {
-  try {
-    const result = await prisma.user.findMany();
-    res.status(200).json(result);
-  } catch (error) {
-    res.status(500).json({ message: "error when try to get data" });
-  }
-}
+type DataType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
 
-async function handlePostMethod(req: NextApiRequest, res: NextApiResponse) {
-  const dataFormClient = JSON.parse(req.body);
+async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const registerData: DataType = await JSON.parse(req.body);
+  const passwordHash = await argon2.hash(registerData.password);
+
   try {
-    const result = await prisma.user.create({
+    await prisma.user.create({
       data: {
-        ...dataFormClient,
+        email: registerData.email,
+        firstName: registerData.firstName,
+        lastName: registerData.lastName,
+        password: passwordHash,
+      },
+      select: {
+        email: true,
+        firstName: true,
+        lastName: true,
       },
     });
 
-    res.status(200).json(result);
-  } catch (error) {
-    res.status(500).json({ message: "terjadi kesalahan saat menyimpan data" });
-  }
-}
+    const jwtToken = jwt.sign(
+      {
+        email: registerData.email,
+        firstName: registerData.firstName,
+        lastName: registerData.lastName,
+      },
+      "tarsius123"
+    );
 
-function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === "GET") {
-    handleGetMethod(req, res);
-  } else if (req.method === "POST") {
+    res.setHeader("Set-Cookie", [
+      `token=${jwtToken}; path=/; SameSite=Lax; Secure`,
+      `firstName=${registerData.firstName}; path=/; SameSite=Lax; Secure`,
+    ]);
+
+    res.status(200).json({
+      message: "success",
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "error when try register" });
   }
 }
 

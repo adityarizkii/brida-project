@@ -10,6 +10,7 @@ type DataType = {
   idSatwa: string;
   name: string;
   description: string;
+  sortDesc: string;
   location: string;
   image: string;
   coorX: number;
@@ -85,10 +86,7 @@ const Map = () => {
         >
           <Popup>
             <span className="text-lg font-semibold">{data.name}</span>
-            <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio,
-              numquam.
-            </p>{" "}
+            <p>{data.sortDesc}</p>{" "}
             <Link href={`/map/detail/${data.idxSatwa}`}>See Details</Link>
           </Popup>
         </Marker>

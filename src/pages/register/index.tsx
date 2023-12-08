@@ -1,5 +1,4 @@
 import InputForm from "@/components/Fragments/InputForm";
-import { useLoginContext } from "@/context/loginContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -17,28 +16,22 @@ type UserType = {
 
 const RegisterPage = () => {
   const router = useRouter();
-  const { status, setStatus, data, setData } = useLoginContext();
-
-  const handleSignUp = (e: FormEvent) => {
+  const handleSignUp = async (e: FormEvent) => {
     e.preventDefault();
     const Form = e.target as HTMLFormElement;
     const formData = new FormData(Form);
-
     const formDataObject = Object.fromEntries(formData.entries()) as UserType;
     const { confirmPassword, ...data } = formDataObject;
 
-    fetch("http://localhost:3000/api/user", {
+    const result = await fetch("http://localhost:3000/api/register", {
       method: "POST",
       body: JSON.stringify(data),
-    }).then((res) => {
-      setStatus(true);
-      setData({
-        email: data.email,
-        firstName: data.firstName,
-        lastName: data.lastName,
-      });
-      router.push("/quiz");
     });
+
+    const resultJson = await result.json();
+    console.log(resultJson);
+
+    router.push("/quiz");
   };
 
   return (
@@ -75,7 +68,6 @@ const RegisterPage = () => {
       <div className="flex flex-col justify-center rounded-3xl border py-12 shadow-2xl md:px-28">
         <h1 className="mb-6 text-center text-4xl font-bold text-neutral950">
           Sign Up
-          {JSON.stringify(status)}
         </h1>
         <form className="flex flex-col gap-4" onSubmit={handleSignUp}>
           <InputForm

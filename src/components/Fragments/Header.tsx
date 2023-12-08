@@ -1,9 +1,10 @@
-import { useLoginContext } from "@/context/loginContext";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import { Dispatch, SetStateAction } from "react";
+import { useCookies } from "react-cookie";
 
 type propsType = {
   classname: string;
@@ -13,8 +14,23 @@ type propsType = {
 
 const Header = (props: propsType) => {
   const { classname, setIsSidebarActive, isSidebarActive } = props;
+  const [cookies, setCookies, removeCookies] = useCookies();
+  const [firstName, setFirstName] = useState<string>("");
+  const [token, setToken] = useState<string>("");
+  const [accSetting, setAccSetting] = useState<boolean>(false);
   const pathname = usePathname().split("/");
-  const { status, data } = useLoginContext();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    removeCookies("token");
+    removeCookies("firstName");
+    router.push("/login");
+  };
+
+  useEffect(() => {
+    setFirstName(cookies.firstName);
+    setToken(cookies.token);
+  });
 
   return (
     <>
@@ -54,19 +70,31 @@ const Header = (props: propsType) => {
             <Link href="/login">Kuis</Link>
           </li>
         </ul>
-        {status ? (
-          <div className="flex gap-3">
-            <h3 className="text-lg font-semibold text-primary">
-              {data.firstName} {data.lastName}
-            </h3>
-            <Image
-              src={"/arrow-down.svg"}
-              alt="arrow-down"
-              width={25}
-              height={25}
-            />
+        {token && (
+          <div className="relative flex gap-3">
+            <h3 className="text-lg font-semibold text-primary">{firstName}</h3>
+            <button
+              onClick={() => {
+                setAccSetting(!accSetting);
+              }}
+            >
+              <Image
+                src={"/arrow-down.svg"}
+                alt="arrow-down"
+                width={25}
+                height={25}
+              />
+            </button>
+            {accSetting && (
+              <div className="absolute right-0 top-10 rounded-md border bg-white p-4 shadow-lg">
+                <ul>
+                  <li onClick={handleLogout}>Logout</li>
+                </ul>
+              </div>
+            )}
           </div>
-        ) : (
+        )}
+        {!token && (
           <div className="hidden gap-4 lg:flex">
             <Link
               href={"/login"}

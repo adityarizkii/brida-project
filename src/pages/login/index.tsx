@@ -1,8 +1,34 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { FormEvent } from "react";
+
+type UserType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+};
 
 const LoginPage = () => {
+  const router = useRouter();
+  const handleSignIn = async (e: FormEvent) => {
+    e.preventDefault();
+    const Form = e.target as HTMLFormElement;
+    const formData = new FormData(Form);
+    const formDataObject = Object.fromEntries(formData.entries()) as UserType;
+    // console.log(formDataObject);
+
+    const result = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+      body: JSON.stringify(formDataObject),
+    });
+
+    const resultJson = await result.json();
+    console.log(resultJson);
+    router.push("/login");
+  };
   return (
     <div className="grid h-screen lg:grid-cols-2">
       <div className="flex flex-col justify-center rounded-3xl border shadow-2xl md:px-28">
@@ -22,14 +48,15 @@ const LoginPage = () => {
           <span className="text-sm font-semibold md:hidden">Kembali</span>
         </Link>
         <h1 className="mb-6 text-center text-3xl font-bold">Sign In</h1>
-        <form action="" className="flex flex-col gap-6">
+        <form className="flex flex-col gap-6" onSubmit={handleSignIn}>
           <div className="flex flex-col gap-2">
             <label htmlFor="signin" className="text-sm font-medium">
               Email
             </label>
             <input
+              name="email"
               type="text"
-              id="signin"
+              id="email"
               className="rounded-md border bg-[#F8F9FB] p-3"
               placeholder="Masukkan email anda"
             />
@@ -40,7 +67,8 @@ const LoginPage = () => {
             </label>
             <input
               type="password"
-              id="signin"
+              id="password"
+              name="password"
               className="rounded-md border bg-input p-3"
               placeholder="Masukkan kata sandi anda"
             />
@@ -56,12 +84,12 @@ const LoginPage = () => {
               Lupa kata sandi?
             </a>
           </div>
-          <Link
-            href={"/quiz"}
+          <button
+            type="submit"
             className="rounded-md bg-primary py-3 text-center font-semibold text-white hover:bg-primaryHover"
           >
             Sign In
-          </Link>
+          </button>
           <div className="">
             <span className="text-neutral500">Belum punya akun? </span>
             <Link
