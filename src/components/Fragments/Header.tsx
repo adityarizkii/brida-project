@@ -18,8 +18,14 @@ const Header = (props: propsType) => {
   const [firstName, setFirstName] = useState<string>("");
   const [token, setToken] = useState<string>("");
   const [accSetting, setAccSetting] = useState<boolean>(false);
-  const pathname = usePathname().split("/");
+  const [pathname, setPathname] = useState<string[]>();
+  const path = usePathname();
   const router = useRouter();
+
+  useEffect(() => {
+    const pathname = path.split("/");
+    setPathname(pathname);
+  }, []);
 
   const handleLogout = () => {
     removeCookies("token");
@@ -43,28 +49,28 @@ const Header = (props: propsType) => {
         <ul className="hidden gap-12 lg:flex">
           <li
             className={`font-medium transition duration-200 hover:-translate-y-1 ${
-              !pathname[1] ? "text-primary" : ""
+              pathname && !pathname[1] ? "text-primary" : ""
             }`}
           >
             <Link href="/">Beranda</Link>
           </li>
           <li
             className={`font-medium transition duration-200 hover:-translate-y-1 ${
-              pathname[1] === "map" ? "text-primary" : ""
+              pathname && pathname[1] === "map" ? "text-primary" : ""
             }`}
           >
             <Link href="/map">Peta</Link>
           </li>
           <li
             className={`font-medium transition duration-200 hover:-translate-y-1 ${
-              pathname[1] === "news" ? "text-primary" : ""
+              pathname && pathname[1] === "news" ? "text-primary" : ""
             }`}
           >
             <Link href="/news">Berita</Link>
           </li>
           <li
             className={`font-medium transition duration-200 hover:-translate-y-1 ${
-              pathname[1] === "quiz" ? "text-primary" : ""
+              pathname && pathname[1] === "quiz" ? "text-primary" : ""
             }`}
           >
             <Link href="/login">Kuis</Link>

@@ -23,13 +23,10 @@ const RegisterPage = () => {
     const formDataObject = Object.fromEntries(formData.entries()) as UserType;
     const { confirmPassword, ...data } = formDataObject;
 
-    const result = await fetch("http://localhost:3000/api/register", {
+    await fetch("http://localhost:3000/api/register", {
       method: "POST",
       body: JSON.stringify(data),
     });
-
-    const resultJson = await result.json();
-    console.log(resultJson);
 
     router.push("/quiz");
   };

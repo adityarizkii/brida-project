@@ -1,6 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import jwt from "jsonwebtoken";
 import argon2 from "argon2";

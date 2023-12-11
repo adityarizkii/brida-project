@@ -17,14 +17,16 @@ type DataSatwaType = {
   coorX: number;
   coorY: number;
   idxSatwa: number;
+  region: string;
 };
 
 const DetailSatwaPage = () => {
   const [isSidebarActive, setisSidebarActive] = useState<boolean>(false);
   const [dataSatwa, setDataSatwa] = useState<DataSatwaType[]>(); //untuk menyimpan hasil fetch
   const [filteredData, setFilteredData] = useState<DataSatwaType>();
-
+  const [recommendSatwa, setRecommendSatwa] = useState<DataSatwaType[]>();
   const router = useRouter();
+
   let nextIdx =
     filteredData?.idxSatwa !== undefined ? filteredData?.idxSatwa + 1 : 1;
   if (dataSatwa !== undefined) {
@@ -38,12 +40,10 @@ const DetailSatwaPage = () => {
     prevIdx = dataSatwa !== undefined ? dataSatwa?.length : 1;
   }
 
-  const fetchData = () => {
-    fetch("http://localhost:3000/api/data-satwa")
-      .then((res) => res.json())
-      .then((response) => {
-        setDataSatwa(response);
-      });
+  const fetchData = async () => {
+    const response = await fetch("http://localhost:3000/api/data-satwa");
+    const result = await response.json();
+    setDataSatwa(result);
   };
 
   useEffect(() => {
@@ -52,11 +52,22 @@ const DetailSatwaPage = () => {
 
   useEffect(() => {
     if (router.isReady && dataSatwa) {
+      // get 1 data was clicked in map
       const id = router.query.id as string;
       const filtered = dataSatwa?.find(
         (data: DataSatwaType) => data.idxSatwa === parseInt(id)
       );
       setFilteredData(filtered);
+
+      // get three recommendation data
+      let threeData: DataSatwaType[] = [];
+      dataSatwa?.forEach((data) => {
+        if (threeData.length < 3) {
+          if (data.region === filteredData?.region) threeData.push(data);
+        }
+      });
+
+      setRecommendSatwa(threeData);
     }
   }, [router, dataSatwa]);
 
@@ -102,21 +113,19 @@ const DetailSatwaPage = () => {
         {/* more */}
         <div className="mb-[118px] mt-[60px] w-full">
           <h2 className="mb-10 text-lg font-semibold text-primary lg:text-[32px]">
-            Satwa Lainnya
+            Satwa lain yang berada di {filteredData?.region}
           </h2>
           <div className="grid gap-10 md:grid-cols-3">
-            <div className="rounded-md shadow-2xl lg:w-full">
-              <img src="/kucing2.png" alt="kucing" className="lg:w-full" />
-              <h3 className="my-4 px-4 font-semibold">Kucing</h3>
-            </div>
-            <div className="rounded-md shadow-2xl lg:w-full">
-              <img src="/kucing2.png" alt="kucing" className="lg:w-full" />
-              <h3 className="my-4 px-4 font-semibold">Kucing</h3>
-            </div>
-            <div className="rounded-md shadow-2xl lg:w-full">
-              <img src="/kucing2.png" alt="kucing" className="lg:w-full" />
-              <h3 className="my-4 px-4 font-semibold">Kucing</h3>
-            </div>
+            {recommendSatwa?.map((data) => (
+              <Link
+                href={`/map/detail/${data.idxSatwa}`}
+                className="rounded-md shadow-2xl lg:w-full"
+                key={data.idSatwa}
+              >
+                <img src="/kucing2.png" alt="kucing" className="lg:w-full" />
+                <h3 className="my-4 px-4 font-semibold">{data.name}</h3>
+              </Link>
+            ))}
           </div>
         </div>
       </div>

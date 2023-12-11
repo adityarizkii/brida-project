@@ -20,13 +20,11 @@ const LoginPage = () => {
     const formDataObject = Object.fromEntries(formData.entries()) as UserType;
     // console.log(formDataObject);
 
-    const result = await fetch("http://localhost:3000/api/login", {
+    await fetch("http://localhost:3000/api/login", {
       method: "POST",
       body: JSON.stringify(formDataObject),
     });
 
-    const resultJson = await result.json();
-    console.log(resultJson);
     router.push("/login");
   };
   return (
