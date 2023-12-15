@@ -57,17 +57,28 @@ const DetailSatwaPage = () => {
       const filtered = dataSatwa?.find(
         (data: DataSatwaType) => data.idxSatwa === parseInt(id)
       );
-      setFilteredData(filtered);
 
-      // get three recommendation data
-      let threeData: DataSatwaType[] = [];
-      dataSatwa?.forEach((data) => {
-        if (threeData.length < 3) {
-          if (data.region === filteredData?.region) threeData.push(data);
-        }
-      });
+      if (filtered) {
+        setFilteredData(filtered);
+        // console.log("region now = " + filtered?.region);
 
-      setRecommendSatwa(threeData);
+        // get three recommendation data
+        let threeData: DataSatwaType[] = [];
+        dataSatwa?.forEach((data) => {
+          if (threeData.length < 3) {
+            if (
+              data.region === filtered?.region &&
+              data.idxSatwa !== filtered.idxSatwa
+            ) {
+              // console.log(filtered.region);
+              // console.log(data.region);
+              threeData.push(data);
+            }
+          }
+        });
+        // console.log(threeData.length);
+        setRecommendSatwa(threeData);
+      }
     }
   }, [router, dataSatwa]);
 
@@ -88,7 +99,7 @@ const DetailSatwaPage = () => {
                 </Link>
               </div>
               <Image
-                src={"/kucing1.png"}
+                src={filteredData ? filteredData.image : "/img-not-foung.png"}
                 alt="satwa"
                 width={300}
                 height={300}
@@ -119,10 +130,10 @@ const DetailSatwaPage = () => {
             {recommendSatwa?.map((data) => (
               <Link
                 href={`/map/detail/${data.idxSatwa}`}
-                className="rounded-md shadow-2xl lg:w-full"
+                className="overflow-hidden rounded-md shadow-2xl lg:w-full"
                 key={data.idSatwa}
               >
-                <img src="/kucing2.png" alt="kucing" className="lg:w-full" />
+                <img src={data.image} alt="satwa-image" className="lg:w-full" />
                 <h3 className="my-4 px-4 font-semibold">{data.name}</h3>
               </Link>
             ))}

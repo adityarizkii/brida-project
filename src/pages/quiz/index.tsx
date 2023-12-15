@@ -1,11 +1,14 @@
 import Header from "@/components/Fragments/Header";
 import Footer from "@/components/Fragments/Footer";
-import React, { useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import Image from "next/image";
 import ScoreBar from "@/components/Fragments/ScoreBar";
 import Link from "next/link";
+import { InferGetServerSidePropsType } from "next";
 
-const DashboardQuizPage = () => {
+const DashboardQuizPage = ({
+  token,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [isSidebarActive, setisSidebarActive] = useState<boolean>(false);
 
   return (
@@ -74,6 +77,13 @@ const DashboardQuizPage = () => {
       <Footer />
     </div>
   );
+};
+
+export const getServerSideProps = async (context: any) => {
+  const cookies = context.req.cookies;
+  const token = cookies.token;
+
+  return { props: { token } };
 };
 
 export default DashboardQuizPage;

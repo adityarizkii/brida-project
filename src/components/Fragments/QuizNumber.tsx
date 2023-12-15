@@ -3,9 +3,18 @@ import React from "react";
 type PropsType = {
   children: string;
   status?: string;
+  onClick: (idx: number) => void;
+  toIndex: number;
+  isActive: boolean;
 };
 
-const QuizNumber = ({ status = "unfilled", children }: PropsType) => {
+const QuizNumber = ({
+  status = "unfilled",
+  children,
+  toIndex,
+  onClick,
+  isActive,
+}: PropsType) => {
   let bgcolor;
 
   if (status == "filled") {
@@ -20,7 +29,12 @@ const QuizNumber = ({ status = "unfilled", children }: PropsType) => {
 
   return (
     <div
-      className={`h-[70px] w-[60px] overflow-hidden rounded-md border-2 border-neutral950 ${bgcolor}`}
+      className={`h-[70px] w-[60px] overflow-hidden rounded-md border-2 ${bgcolor} hover:cursor-pointer ${
+        isActive ? "border-neutral-900" : "border-neutral-500"
+      }`}
+      onClick={() => {
+        onClick(toIndex);
+      }}
     >
       <div className="h-[35px] bg-white text-center text-2xl font-semibold">
         <span>{children}</span>

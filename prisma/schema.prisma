@@ -39,6 +39,7 @@ model Soal {
   opsi String[]
   penjelasan String?
   image String?
+  idxSoal Int?
 }
 
 model Artikel {

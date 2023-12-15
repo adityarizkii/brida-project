@@ -36,13 +36,16 @@ const Map = () => {
   //   },
   // ];
 
-  const customMarkerIcon = L.divIcon({
-    // html: '<div className="bg-blue-300"><img src="/marker-rusa.svg" alt="marker"/></div>',
-    html: renderToString(<CustomMarker />),
-    iconSize: [10, 10],
-    iconAnchor: [60, 80],
-    className: "hiden-initial-width",
-  });
+  const CustomMarkerIcon = (pathImg: string) => {
+    const customMarkerIcon = L.divIcon({
+      html: renderToString(<CustomMarker pathImg={pathImg}/>),
+      iconSize: [10, 10],
+      iconAnchor: [60, 80],
+      className: "hiden-initial-width",
+    });
+
+    return customMarkerIcon
+  }
 
   const fetchData = async () => {
     try {
@@ -81,7 +84,7 @@ const Map = () => {
       {dataSatwa?.map((data: DataType, index: number) => (
         <Marker
           position={[data.coorX, data.coorY]}
-          icon={customMarkerIcon}
+          icon={CustomMarkerIcon(data.image)}
           key={index}
         >
           <Popup>
