@@ -48,6 +48,24 @@ const QuizPage = () => {
     setDataSoal(indexingResult);
   };
 
+  const handleSubmit = async () => {
+    let score = 0;
+    dataSoal?.forEach((soal, idx) => {
+      if (soal.jawaban === userOptions[idx].option) {
+        score = score + 10;
+      }
+    });
+
+    await fetch("http://localhost:3000/api/update-score", {
+      method: "POST",
+      body: JSON.stringify(score),
+    });
+
+    // console.log("score " + score);
+    // console.log(dataSoal);
+    // console.log(userOptions);
+  };
+
   useEffect(() => {
     fetchDataSoal();
   }, []);
@@ -120,18 +138,15 @@ const QuizPage = () => {
 
   return (
     <div className="px-[100px]">
-      <div className="flex justify-center pt-8">
-        <Image src={"/logo.svg"} width={154} height={48} alt="log" />
-      </div>
       <div className="pb-[18px] pt-8">
-        <div className="flex justify-between">
+        <div className="flex items-center justify-between">
           <BackLink href="/quiz/unfinished">Batalkan Kuis</BackLink>
-          <h1 className="text-2xl font-semibold">Kuis Satwa NTB</h1>
+          <Image src={"/logo.svg"} width={154} height={48} alt="log" />
           <span className="text-xl font-medium text-error">Timer 00:15</span>
         </div>
       </div>
       {/* box */}
-      <div className="relative mb-10 grid grid-cols-2 gap-x-20 gap-y-14 rounded-md border px-[100px] pb-8 pt-12 shadow-md">
+      <div className="relative mb-10 grid grid-cols-2 gap-x-20 gap-y-12 rounded-md border px-[100px] pb-8 pt-12 shadow-md">
         <div className="relative h-[279px] w-[370px] overflow-hidden rounded-lg">
           <Image src={"/rusa.png"} alt="gambar soal" fill />
         </div>
@@ -194,7 +209,10 @@ const QuizPage = () => {
             </button>
           ) : (
             <button
-              onClick={handleNext}
+              onClick={() => {
+                handleNext();
+                handleSubmit();
+              }}
               className="w-fit rounded-md bg-primary px-12 py-3 text-white hover:bg-primaryHover"
             >
               Selesai
@@ -210,13 +228,14 @@ const QuizPage = () => {
         />
       </div>
       {/* navigasi soal */}
-      <div className="mb-14">
-        <h3 className="mb-4 text-2xl font-semibold text-neutral950">
+      <div className="mb-10">
+        <h3 className="mb-4 text-xl font-semibold text-neutral950">
           Navigasi Kuis
         </h3>
-        <div className="flex gap-5">
+        <div className="flex gap-3">
           {dataSoal?.map((soal, idx) => (
             <QuizNumber
+              key={idx}
               onClick={handleNavigate}
               toIndex={soal.idxSoal}
               status={userOptions[idx].option ? "filled" : "unfilled"}

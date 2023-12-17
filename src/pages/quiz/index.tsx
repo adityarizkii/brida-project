@@ -6,10 +6,67 @@ import ScoreBar from "@/components/Fragments/ScoreBar";
 import Link from "next/link";
 import { InferGetServerSidePropsType } from "next";
 
-const DashboardQuizPage = ({
-  token,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+type UserDataType = {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  score: number;
+};
+
+const DashboardQuizPage = () => {
   const [isSidebarActive, setisSidebarActive] = useState<boolean>(false);
+  const [userData, setUserData] = useState<UserDataType[]>();
+
+  const fetchScores = async () => {
+    const response = await fetch("http://localhost:3000/api/scores");
+    const result = await response.json();
+    setUserData(result);
+  };
+
+  useEffect(() => {
+    fetchScores();
+  }, []);
+
+  const element = [];
+  for (let i = 0; i < 2; i++) {
+    element.push(
+      <div className="flex flex-col gap-4">
+        {userData?.map((data, idx) => {
+          if (i === 0) {
+            if (idx > 4) {
+              return;
+            } else {
+              return (
+                <ScoreBar
+                  dataAos="zoom-in"
+                  dataAosDelay={idx + 1 + "00"}
+                  score={data.score}
+                  name={data.firstName}
+                  position={++idx}
+                />
+              );
+            }
+          } else {
+            if (idx < 5) {
+              return;
+            } else {
+              return (
+                <ScoreBar
+                  dataAos="zoom-in"
+                  dataAosDelay={idx + 1 + "00"}
+                  score={data.score}
+                  name={data.firstName}
+                  position={++idx}
+                />
+              );
+            }
+          }
+        })}
+      </div>
+    );
+  }
 
   return (
     <div className="">
@@ -56,20 +113,7 @@ const DashboardQuizPage = ({
               Leaderboard Kuis
             </h2>
             <div className="mx-auto grid w-[665px] grid-cols-2 gap-16">
-              <div className="flex flex-col gap-4">
-                <ScoreBar dataAos="zoom-in" dataAosDelay="100"></ScoreBar>
-                <ScoreBar dataAos="zoom-in" dataAosDelay="200"></ScoreBar>
-                <ScoreBar dataAos="zoom-in" dataAosDelay="300"></ScoreBar>
-                <ScoreBar dataAos="zoom-in" dataAosDelay="400"></ScoreBar>
-                <ScoreBar dataAos="zoom-in" dataAosDelay="500"></ScoreBar>
-              </div>
-              <div className="flex flex-col gap-4">
-                <ScoreBar dataAos="zoom-in" dataAosDelay="600"></ScoreBar>
-                <ScoreBar dataAos="zoom-in" dataAosDelay="700"></ScoreBar>
-                <ScoreBar dataAos="zoom-in" dataAosDelay="800"></ScoreBar>
-                <ScoreBar dataAos="zoom-in" dataAosDelay="900"></ScoreBar>
-                <ScoreBar dataAos="zoom-in" dataAosDelay="1000"></ScoreBar>
-              </div>
+              {element}
             </div>
           </div>
         </div>

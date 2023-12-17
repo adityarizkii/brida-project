@@ -38,6 +38,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   res.setHeader("Set-Cookie", [
     `token=${jwtToken}; path=/; SameSite=Lax; Secure`,
     `firstName=${userData.firstName}; path=/; SameSite=Lax; Secure`,
+    `id=${userData.id}; path=/; SameSite=Lax; Secure`,
   ]);
 
   res.status(200).json({
