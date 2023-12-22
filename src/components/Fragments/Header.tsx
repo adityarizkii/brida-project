@@ -30,6 +30,7 @@ const Header = (props: propsType) => {
   const handleLogout = () => {
     removeCookies("token");
     removeCookies("firstName");
+    removeCookies("id");
     router.push("/login");
   };
 

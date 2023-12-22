@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BackLink from "@/components/Fragments/BackLink";
 import Image from "next/image";
 import Link from "next/link";
 import ScoreBar from "@/components/Fragments/ScoreBar";
 
+type DataUserType = {
+  id: string;
+  firstName: string;
+  email: string;
+  score: number;
+};
+
 const FinishPage = () => {
+  const [dataUser, setDataUser] = useState<DataUserType>();
+  const [dataScores, setDataScores] = useState<DataUserType[]>();
+
+  const fetchData = async () => {
+    const response = await fetch("http://localhost:3000/api/single-user");
+    const result = await response.json();
+
+    setDataUser(result);
+  };
+
+  const fetchScores = async () => {
+    const response = await fetch("http://localhost:3000/api/scores");
+    const result = await response.json();
+    result.splice(5);
+
+    setDataScores(result);
+  };
+
+  useEffect(() => {
+    fetchData();
+    fetchScores();
+  }, []);
+
   return (
     <div className="h-[850px] px-16">
       <div className="flex justify-center py-12">
@@ -21,10 +51,10 @@ const FinishPage = () => {
         <div className="flex justify-center">
           <div className="mt-16 max-w-[330px] text-center">
             <h2 className="mb-14 text-4xl font-medium leading-[1.5]">
-              Selamat Kepada Kevin!
+              Selamat Kepada {dataUser?.firstName}!
             </h2>
             <div className="mb-4 text-4xl font-medium">Skor kamu</div>
-            <div className="mb-16 text-5xl font-medium">95</div>
+            <div className="mb-16 text-5xl font-medium">{dataUser?.score}</div>
             <Link
               href={"/quiz/review"}
               className="text-xl font-medium text-info underline"
@@ -36,10 +66,16 @@ const FinishPage = () => {
         <div className="flex justify-center">
           <div className="flex w-[315px] flex-col gap-5 rounded-lg px-4 py-9 shadow-xl">
             <h3 className="text-center text-xl font-medium">Peringkat Kuis</h3>
-            <ScoreBar dataAos="fade-right" dataAosDelay="200"></ScoreBar>
-            <ScoreBar dataAos="fade-right" dataAosDelay="400"></ScoreBar>
-            <ScoreBar dataAos="fade-right" dataAosDelay="600"></ScoreBar>
-            <ScoreBar dataAos="fade-right" dataAosDelay="800"></ScoreBar>
+            {dataScores?.map((data, idx) => (
+              <ScoreBar
+                dataAos="fade-right"
+                dataAosDelay="200"
+                position={++idx}
+                score={data.score}
+                name={data.firstName}
+                key={idx}
+              />
+            ))}
           </div>
         </div>
       </div>

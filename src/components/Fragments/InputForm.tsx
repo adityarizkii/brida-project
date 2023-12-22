@@ -2,6 +2,7 @@ import React from "react";
 
 const InputForm = (props: any) => {
   const { icon, children, type, id, label } = props;
+
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={id} className="text-sm font-medium">

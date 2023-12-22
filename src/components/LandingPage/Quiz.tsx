@@ -1,7 +1,30 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+type UserDataType = {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  score: number;
+};
 
 const Quiz = () => {
+  const [scoresData, setScoresData] = useState<UserDataType[]>();
+
+  const fetchScores = async () => {
+    const response = await fetch("http://localhost:3000/api/scores");
+    const result = await response.json();
+    result.splice(3);
+
+    setScoresData(result);
+  };
+
+  useEffect(() => {
+    fetchScores();
+  }, []);
+
   return (
     <div className="mb-14 grid md:grid-cols-2 md:gap-11 lg:grid-cols-3">
       <div
@@ -37,20 +60,14 @@ const Quiz = () => {
             Leaderboard Kuis
           </h1>
           <ul>
-            <li>
-              <div className="mb-4 flex justify-between rounded-md bg-[#F8F9FB] px-5 py-3 text-neutral500">
-                <span>1. Kevin</span>
-                <span>100</span>
-              </div>
-              <div className="mb-4 flex justify-between rounded-md bg-[#F8F9FB] px-5 py-3 text-neutral500">
-                <span>1. Kevin</span>
-                <span>100</span>
-              </div>
-              <div className="mb-4 flex justify-between rounded-md bg-[#F8F9FB] px-5 py-3 text-neutral500">
-                <span>1. Kevin</span>
-                <span>100</span>
-              </div>
-            </li>
+            {scoresData?.map((scoreData, idx) => (
+              <li>
+                <div className="mb-4 flex justify-between rounded-md bg-[#F8F9FB] px-5 py-3 text-neutral500">
+                  <span>{`${++idx}. ${scoreData.firstName}`}</span>
+                  <span>{scoreData.score}</span>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

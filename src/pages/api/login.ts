@@ -17,10 +17,12 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     },
   });
 
-  if (!userData) return res.status(404).json({ message: "User Not Found" });
+  if (!userData)
+    return res.status(404).json({ message: "Pengguna tidak ditemukan" });
 
   const jwtToken = jwt.sign(
     {
+      id: userData.id,
       email: userData.email,
       username: userData.firstName,
       lastName: userData.lastName,
@@ -33,7 +35,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     loginData.password
   );
   if (!passwordValidate)
-    return res.status(401).json({ message: "Unauthorized" });
+    return res.status(401).json({ message: "Periksa kembali password" });
 
   res.setHeader("Set-Cookie", [
     `token=${jwtToken}; path=/; SameSite=Lax; Secure`,

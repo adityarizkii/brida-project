@@ -1,10 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BackLink from "@/components/Fragments/BackLink";
 import Image from "next/image";
 import Link from "next/link";
 import ScoreBar from "@/components/Fragments/ScoreBar";
 
+type DataUserType = {
+  id: string;
+  firstName: string;
+  email: string;
+  score: number;
+};
+
 const UnfinishedPage = () => {
+  const [dataScores, setDataScores] = useState<DataUserType[]>();
+
+  const fetchScores = async () => {
+    const response = await fetch("http://localhost:3000/api/scores");
+    const result = await response.json();
+    result.splice(5);
+
+    setDataScores(result);
+  };
+
+  useEffect(() => {
+    fetchScores();
+  }, []);
+
   return (
     <div className="h-[850px] px-16">
       <div className="flex justify-center py-12">
@@ -31,22 +52,21 @@ const UnfinishedPage = () => {
             <div className="mb-4 text-xl font-medium">
               Selesaikan kuis hingga selesai, maka skor kamu akan muncul{" "}
             </div>
-            {/* <div className="mb-16 text-5xl font-medium">95</div>
-            <Link
-              href={"/finish"}
-              className="text-xl font-medium text-info underline"
-            >
-              Lihat Jawaban
-            </Link> */}
           </div>
         </div>
         <div className="flex justify-center">
           <div className="flex w-[315px] flex-col gap-5 rounded-lg px-4 py-9 shadow-xl">
             <h3 className="text-xl font-medium">Peringkat Kuis</h3>
-            <ScoreBar></ScoreBar>
-            <ScoreBar></ScoreBar>
-            <ScoreBar></ScoreBar>
-            <ScoreBar></ScoreBar>
+            {dataScores?.map((data, idx) => (
+              <ScoreBar
+                dataAos="fade-right"
+                dataAosDelay="200"
+                position={++idx}
+                score={data.score}
+                name={data.firstName}
+                key={idx}
+              />
+            ))}
           </div>
         </div>
       </div>

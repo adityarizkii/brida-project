@@ -1,7 +1,12 @@
 import BackLink from "@/components/Fragments/BackLink";
+import PopUpSubmit from "@/components/Fragments/PopUpSubmit";
+import PopUpTimeLeft from "@/components/Fragments/PopUpTimeLeft";
 import QuizNumber from "@/components/Fragments/QuizNumber";
+import Timer from "@/components/Fragments/Timer";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 type DataSoalType = {
   idSoal: string;
@@ -23,9 +28,13 @@ const QuizPage = () => {
   const [currSoal, setCurrSoal] = useState<DataSoalType>();
   const [currIdx, setCurrIdx] = useState<number>(1);
   const [currOption, setCurrOption] = useState<string | undefined>(undefined);
+  const [cookies, setCookies, removeCookies] = useCookies();
+  const [isTimeLeft, setIsTimeLeft] = useState<boolean>(true);
   const [radioValues, setRadioValues] = useState<Array<boolean>>(
     Array(currSoal?.opsi.length).fill(false)
   );
+  const router = useRouter();
+  const [isPopUp, setIsPopUp] = useState<boolean>(false);
   const [userOptions, setUserOptions] = useState<UserOptionsType[]>([
     { number: 1, option: undefined },
     { number: 2, option: undefined },
@@ -49,6 +58,8 @@ const QuizPage = () => {
   };
 
   const handleSubmit = async () => {
+    recordAnswer();
+
     let score = 0;
     dataSoal?.forEach((soal, idx) => {
       if (soal.jawaban === userOptions[idx].option) {
@@ -61,10 +72,23 @@ const QuizPage = () => {
       body: JSON.stringify(score),
     });
 
+    localStorage.setItem("dataSoal", JSON.stringify(dataSoal));
+    localStorage.setItem("userOptions", JSON.stringify(userOptions));
+
+    removeCookies("quizToken");
+    router.push("/quiz/finish");
+
     // console.log("score " + score);
     // console.log(dataSoal);
     // console.log(userOptions);
   };
+
+  useEffect(() => {
+    if (!isTimeLeft) {
+      recordAnswer();
+      setIsPopUp(true);
+    }
+  }, [isTimeLeft]);
 
   useEffect(() => {
     fetchDataSoal();
@@ -137,113 +161,132 @@ const QuizPage = () => {
   };
 
   return (
-    <div className="px-[100px]">
-      <div className="pb-[18px] pt-8">
-        <div className="flex items-center justify-between">
-          <BackLink href="/quiz/unfinished">Batalkan Kuis</BackLink>
-          <Image src={"/logo.svg"} width={154} height={48} alt="log" />
-          <span className="text-xl font-medium text-error">Timer 00:15</span>
+    <div className={isPopUp ? "max-h-screen overflow-y-hidden" : ""}>
+      {!isTimeLeft && <PopUpTimeLeft handleSubmit={handleSubmit} />}
+      {isPopUp && isTimeLeft && (
+        <PopUpSubmit setIsPopUp={setIsPopUp} handleSubmit={handleSubmit} />
+      )}
+      <div className="px-[100px]">
+        <div className="pb-[18px] pt-8">
+          <div className="flex items-center justify-between">
+            <BackLink href="/quiz/unfinished" removeToken={removeCookies}>
+              Batalkan Kuis
+            </BackLink>
+            <Image src={"/logo.svg"} width={154} height={48} alt="log" />
+            <Timer seconds={120} setIsTimeLeft={setIsTimeLeft} />
+          </div>
         </div>
-      </div>
-      {/* box */}
-      <div className="relative mb-10 grid grid-cols-2 gap-x-20 gap-y-12 rounded-md border px-[100px] pb-8 pt-12 shadow-md">
-        <div className="relative h-[279px] w-[370px] overflow-hidden rounded-lg">
-          <Image src={"/rusa.png"} alt="gambar soal" fill />
-        </div>
-        <div className="">
-          <h2 className="text-xl font-medium">
-            Pertanyaan {currSoal?.idxSoal}/10
-          </h2>
-          <p className="my-3 font-medium">{currSoal?.soal}</p>
-          <p className="mb-6 font-medium">Jawab:</p>
-          <form className="mb-2.5 flex flex-col gap-2.5 lg:mb-4">
-            {currSoal?.opsi.map((option, idx) => (
-              <div
-                className="flex gap-2.5 text-sm font-medium md:text-base"
-                key={idx}
+        {/* box */}
+        <div className="relative mb-10 grid grid-cols-2 gap-x-20 gap-y-12 rounded-md border px-[100px] pb-8 pt-12 shadow-md">
+          {currSoal?.image && (
+            <div className="relative h-[279px] w-[370px] overflow-hidden rounded-lg">
+              <Image src={currSoal.image} alt="gambar soal" fill />
+            </div>
+          )}
+          <div className={currSoal?.image ? "" : "col-span-2"}>
+            <h2 className="text-xl font-medium">
+              Pertanyaan {currSoal?.idxSoal}/10
+            </h2>
+            <p className="my-3 font-medium">{currSoal?.soal}</p>
+            <p className="mb-6 font-medium">Jawab:</p>
+            <form className="mb-2.5 flex flex-col gap-2.5 lg:mb-4">
+              {currSoal?.opsi.map((option, idx) => (
+                <div
+                  className="flex cursor-pointer gap-2.5 text-sm font-medium md:text-base"
+                  key={idx}
+                >
+                  <input
+                    type="radio"
+                    id={"answer" + idx}
+                    name={"answer"}
+                    onChange={() => {
+                      const newRadioValues = Array(currSoal.opsi.length).fill(
+                        false
+                      );
+                      newRadioValues[idx] = true;
+                      setRadioValues(newRadioValues);
+                      setCurrOption(option);
+                    }}
+                    checked={radioValues[idx]}
+                    className="cursor-pointer"
+                  />
+                  <label htmlFor={"answer" + idx} className="cursor-pointer">
+                    {option}
+                  </label>
+                </div>
+              ))}
+              <span
+                className="mt-4 cursor-pointer text-xs font-medium text-info underline md:text-sm"
+                onClick={() => {
+                  const newRadioValues = Array(currSoal?.opsi.length).fill(
+                    false
+                  );
+                  setRadioValues(newRadioValues);
+                  setCurrOption(undefined);
+                }}
               >
-                <input
-                  type="radio"
-                  id={"answer" + idx}
-                  name={"answer"}
-                  onChange={() => {
-                    const newRadioValues = Array(currSoal.opsi.length).fill(
-                      false
-                    );
-                    newRadioValues[idx] = true;
-                    setRadioValues(newRadioValues);
-                    setCurrOption(option);
-                  }}
-                  checked={radioValues[idx]}
-                />
-                <label htmlFor={"answer" + idx}>{option}</label>
-              </div>
-            ))}
-            <span
-              className="mt-4 text-xs font-medium text-info underline md:text-sm"
-              onClick={() => {
-                const newRadioValues = Array(currSoal?.opsi.length).fill(false);
-                setRadioValues(newRadioValues);
-                setCurrOption(undefined);
-              }}
-            >
-              Bersihkan Jawaban
-            </span>
-          </form>
-        </div>
-        {currIdx !== 1 && (
-          <button
-            onClick={handlePrev}
-            className="w-fit rounded-md border border-primary bg-white px-6 py-3 font-medium text-primary hover:bg-primaryHover hover:text-white"
-          >
-            Soal Sebelumnya
-          </button>
-        )}
-        <div className="col-start-2 flex flex-row-reverse">
-          {currIdx !== 10 ? (
+                Bersihkan Jawaban
+              </span>
+            </form>
+          </div>
+          {currIdx !== 1 && (
             <button
-              onClick={handleNext}
-              className="w-fit rounded-md bg-primary px-6 py-3 text-white hover:bg-primaryHover"
+              onClick={handlePrev}
+              className="w-fit rounded-md border border-primary bg-white px-6 py-3 font-medium text-primary hover:bg-primaryHover hover:text-white"
             >
-              Soal Selanjutnya
-            </button>
-          ) : (
-            <button
-              onClick={() => {
-                handleNext();
-                handleSubmit();
-              }}
-              className="w-fit rounded-md bg-primary px-12 py-3 text-white hover:bg-primaryHover"
-            >
-              Selesai
+              Soal Sebelumnya
             </button>
           )}
+          <div className="col-start-2 flex flex-row-reverse">
+            {currIdx !== 10 ? (
+              <button
+                onClick={handleNext}
+                className="w-fit rounded-md bg-primary px-6 py-3 text-white hover:bg-primaryHover"
+              >
+                Soal Selanjutnya
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  recordAnswer();
+                  setIsPopUp(true);
+                }}
+                className="w-fit rounded-md bg-primary px-12 py-3 text-white hover:bg-primaryHover"
+              >
+                Selesai
+              </button>
+            )}
+          </div>
+          <Image
+            src={
+              currSoal?.image
+                ? "/maskot-kuis-kanan.svg"
+                : "/maskot-kuis-kiri.svg"
+            }
+            alt="maskot"
+            width={80}
+            height={130}
+            className="absolute -bottom-4 left-[45%]"
+          />
         </div>
-        <Image
-          src={"/maskot-kuis.svg"}
-          alt="maskot"
-          width={80}
-          height={130}
-          className="absolute -bottom-4 left-[45%]"
-        />
-      </div>
-      {/* navigasi soal */}
-      <div className="mb-10">
-        <h3 className="mb-4 text-xl font-semibold text-neutral950">
-          Navigasi Kuis
-        </h3>
-        <div className="flex gap-3">
-          {dataSoal?.map((soal, idx) => (
-            <QuizNumber
-              key={idx}
-              onClick={handleNavigate}
-              toIndex={soal.idxSoal}
-              status={userOptions[idx].option ? "filled" : "unfilled"}
-              isActive={currIdx - 1 === idx ? true : false}
-            >
-              {`${soal.idxSoal}`}
-            </QuizNumber>
-          ))}
+        {/* navigasi soal */}
+        <div className="mb-10">
+          <h3 className="mb-4 text-xl font-semibold text-neutral950">
+            Navigasi Kuis
+          </h3>
+          <div className="flex gap-3">
+            {dataSoal?.map((soal, idx) => (
+              <QuizNumber
+                key={idx}
+                onClick={handleNavigate}
+                toIndex={soal.idxSoal}
+                status={userOptions[idx].option ? "filled" : "unfilled"}
+                isActive={currIdx - 1 === idx ? true : false}
+              >
+                {`${soal.idxSoal}`}
+              </QuizNumber>
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -16,6 +16,15 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   const registerData: DataType = await JSON.parse(req.body);
   const passwordHash = await argon2.hash(registerData.password);
 
+  const registeredUser = await prisma.user.findUnique({
+    where: {
+      email: registerData.email,
+    },
+  });
+
+  if (registeredUser)
+    return res.status(500).json({ message: "email has already been used" });
+
   try {
     await prisma.user.create({
       data: {

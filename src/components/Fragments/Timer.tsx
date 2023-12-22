@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
 
-const Timer = ({ seconds }: { seconds: number }) => {
+type PropsType = {
+  seconds: number;
+  setIsTimeLeft: any;
+};
+
+const Timer = ({ seconds, setIsTimeLeft }: PropsType) => {
   const [timeLeft, setTimeLeft] = useState<number>(seconds);
-  const [toggle, setToggle] = useState<boolean>(false);
 
   useEffect(() => {
-    if (timeLeft === 0) return;
+    if (timeLeft === 0) {
+      setIsTimeLeft(false);
+      return;
+    }
 
     const timer = setInterval(() => {
       setTimeLeft(timeLeft - 1);
@@ -23,12 +30,14 @@ const Timer = ({ seconds }: { seconds: number }) => {
   };
 
   return (
-    <div>
-      <p>{formatTime(timeLeft)}</p>
-      <button onClick={() => setToggle(!toggle)}>
-        {toggle ? "true" : "false"}
-      </button>
-    </div>
+    <p
+      className={`w-32 text-xl font-medium ${
+        timeLeft <= 10 ? "text-error" : ""
+      } `}
+    >
+      <span className="mr-3">Time : </span>
+      {formatTime(timeLeft)}
+    </p>
   );
 };
 

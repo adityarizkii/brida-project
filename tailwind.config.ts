@@ -25,6 +25,9 @@ const config: Config = {
         error: "#EF4444",
         primaryHover: "#00736D",
       },
+      animation: {
+        errorShake: "error-shake .7s",
+      },
     },
   },
   plugins: [],

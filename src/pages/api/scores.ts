@@ -5,6 +5,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
     const result = await prisma.user.findMany({
       where: { score: { not: null } },
+      orderBy: {
+        score: "desc",
+      },
     });
     res.status(200).json(result);
   } catch (err) {

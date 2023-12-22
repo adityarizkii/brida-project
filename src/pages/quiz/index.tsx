@@ -1,10 +1,9 @@
 import Header from "@/components/Fragments/Header";
 import Footer from "@/components/Fragments/Footer";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ScoreBar from "@/components/Fragments/ScoreBar";
-import Link from "next/link";
-import { InferGetServerSidePropsType } from "next";
+import { useRouter } from "next/router";
 
 type UserDataType = {
   id: string;
@@ -18,6 +17,7 @@ type UserDataType = {
 const DashboardQuizPage = () => {
   const [isSidebarActive, setisSidebarActive] = useState<boolean>(false);
   const [userData, setUserData] = useState<UserDataType[]>();
+  const router = useRouter();
 
   const fetchScores = async () => {
     const response = await fetch("http://localhost:3000/api/scores");
@@ -32,7 +32,7 @@ const DashboardQuizPage = () => {
   const element = [];
   for (let i = 0; i < 2; i++) {
     element.push(
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4" key={i}>
         {userData?.map((data, idx) => {
           if (i === 0) {
             if (idx > 4) {
@@ -40,6 +40,7 @@ const DashboardQuizPage = () => {
             } else {
               return (
                 <ScoreBar
+                  key={idx}
                   dataAos="zoom-in"
                   dataAosDelay={idx + 1 + "00"}
                   score={data.score}
@@ -54,6 +55,7 @@ const DashboardQuizPage = () => {
             } else {
               return (
                 <ScoreBar
+                  key={idx}
                   dataAos="zoom-in"
                   dataAosDelay={idx + 1 + "00"}
                   score={data.score}
@@ -67,6 +69,11 @@ const DashboardQuizPage = () => {
       </div>
     );
   }
+
+  const handleStart = async () => {
+    await fetch("http://localhost:3000/api/start-quiz");
+    router.push("/quiz/start");
+  };
 
   return (
     <div className="">
@@ -87,12 +94,12 @@ const DashboardQuizPage = () => {
               tentang satwa-satwa asli NTB. <br /> Ayo, ikuti kuisnya dan
               jadilah juara!
             </p>
-            <Link
-              href={"/quiz/start"}
+            <button
               className="rounded-lg bg-primary px-7 py-4 text-xl font-semibold text-white hover:bg-primaryHover"
+              onClick={handleStart}
             >
               Mulai Kuis
-            </Link>
+            </button>
           </div>
           <div className="relative h-[300px] w-[300px]" data-aos="fade-left">
             <Image src={"/beranda-kuis.svg"} alt="img" fill />

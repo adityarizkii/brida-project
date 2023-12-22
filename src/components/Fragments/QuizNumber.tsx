@@ -5,7 +5,7 @@ type PropsType = {
   status?: string;
   onClick: (idx: number) => void;
   toIndex: number;
-  isActive: boolean;
+  isActive?: boolean;
 };
 
 const QuizNumber = ({
