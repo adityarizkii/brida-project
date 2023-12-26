@@ -19,10 +19,10 @@ const About = () => {
       </div>
       <div className="grid md:grid-cols-2">
         <div className="mx-auto hidden md:block" data-aos="fade-right">
-          <div className="relative mb-7 w-[300px] lg:w-[400px]">
+          <div className="relative mb-7 h-[300px] w-[300px] lg:w-[400px]">
             <Image src="/duarusa.svg" alt="dua rusa" fill />
           </div>
-          <div className="relative w-[200px] lg:w-[300px]">
+          <div className="relative h-[200px] w-[200px] lg:w-[300px]">
             <Image src="/nontonrusa.svg" alt="nonton rusa" fill />
           </div>
         </div>
