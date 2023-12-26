@@ -38,18 +38,20 @@ const Map = () => {
 
   const CustomMarkerIcon = (pathImg: string) => {
     const customMarkerIcon = L.divIcon({
-      html: renderToString(<CustomMarker pathImg={pathImg}/>),
+      html: renderToString(<CustomMarker pathImg={pathImg} />),
       iconSize: [10, 10],
       iconAnchor: [60, 80],
       className: "hiden-initial-width",
     });
 
-    return customMarkerIcon
-  }
+    return customMarkerIcon;
+  };
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/data-satwa");
+      const response = await fetch(
+        "https://ecosaver.vercel.app/api/data-satwa"
+      );
       const result = await response.json();
       const filteredData = result.filter(
         (data: DataType) => data.coorX && data.coorY

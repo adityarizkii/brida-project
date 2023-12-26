@@ -28,7 +28,7 @@ const News = () => {
   ];
 
   const fetchNewsData = async () => {
-    const response = await fetch("http://localhost:3000/api/data-article");
+    const response = await fetch("https://ecosaver.vercel.app/api/user");
     const result = await response.json();
     result.splice(3);
     setDataArticle(result);

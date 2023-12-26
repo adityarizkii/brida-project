@@ -49,7 +49,7 @@ const QuizPage = () => {
   ]);
 
   const fetchDataSoal = async () => {
-    const response = await fetch("http://localhost:3000/api/data-soal");
+    const response = await fetch("https://ecosaver.vercel.app/api/data-soal");
     const result = await response.json();
     const indexingResult = result.map((data: DataSoalType, idx: number) => {
       return { ...data, idxSoal: ++idx };
@@ -67,7 +67,7 @@ const QuizPage = () => {
       }
     });
 
-    await fetch("http://localhost:3000/api/update-score", {
+    await fetch("https://ecosaver.vercel.app/api/update-score", {
       method: "POST",
       body: JSON.stringify(score),
     });

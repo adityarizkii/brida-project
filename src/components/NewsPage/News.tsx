@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import BigCard from "./BigCard";
 import SmallCard from "./SmallCard";
-import Link from "next/link";
 import BackLink from "../Fragments/BackLink";
 
 type DataArticleType = {
@@ -30,7 +29,9 @@ const News = () => {
   ];
 
   const fetchData = async () => {
-    const response = await fetch("http://localhost:3000/api/data-article");
+    const response = await fetch(
+      "https://ecosaver.vercel.app/api/data-article"
+    );
     const result: DataArticleType[] = await response.json();
     // const dateObject = new Date(result[0].year);
     // console.log(dateObject.getFullYear());

@@ -54,7 +54,7 @@ const RegisterPage = () => {
 
     const { confirmPassword, ...data } = formDataObject;
 
-    const response = await fetch("http://localhost:3000/api/register", {
+    const response = await fetch("https://ecosaver.vercel.app/api/register", {
       method: "POST",
       body: JSON.stringify(data),
     });

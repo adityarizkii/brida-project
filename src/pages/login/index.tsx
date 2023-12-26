@@ -25,7 +25,7 @@ const LoginPage = () => {
     const formData = new FormData(Form);
     const formDataObject = Object.fromEntries(formData.entries()) as UserType;
 
-    const response = await fetch("http://localhost:3000/api/login", {
+    const response = await fetch("https://ecosaver.vercel.app/api/login", {
       method: "POST",
       body: JSON.stringify(formDataObject),
     });

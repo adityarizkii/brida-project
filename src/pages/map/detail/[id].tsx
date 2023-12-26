@@ -41,7 +41,7 @@ const DetailSatwaPage = () => {
   }
 
   const fetchData = async () => {
-    const response = await fetch("http://localhost:3000/api/data-satwa");
+    const response = await fetch("https://ecosaver.vercel.app/api/data-satwa");
     const result = await response.json();
     setDataSatwa(result);
   };

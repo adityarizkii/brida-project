@@ -19,7 +19,7 @@ const DashboardQuizPage = () => {
   const router = useRouter();
 
   const fetchScores = async () => {
-    const response = await fetch("http://localhost:3000/api/scores");
+    const response = await fetch("https://ecosaver.vercel.app/api/scores");
     const result = await response.json();
     result.splice(10);
     setUserData(result);
