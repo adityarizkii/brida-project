@@ -91,9 +91,9 @@ const LoginPage = () => {
             {error?.message && (
               <p className="text-sm font-medium text-error">{error.message}</p>
             )}
-            <Link href="/login" className="font-semibold text-info">
+            {/* <Link href="/login" className="font-semibold text-info">
               Lupa kata sandi?
-            </Link>
+            </Link> */}
             <button
               type="submit"
               className="rounded-md bg-primary py-3 text-center font-semibold text-white hover:bg-primaryHover"

@@ -95,7 +95,9 @@ const Header = (props: propsType) => {
             {accSetting && (
               <div className="absolute right-0 top-10 rounded-md border bg-white p-4 shadow-lg">
                 <ul>
-                  <li onClick={handleLogout}>Logout</li>
+                  <li onClick={handleLogout} className="cursor-pointer">
+                    Logout
+                  </li>
                 </ul>
               </div>
             )}

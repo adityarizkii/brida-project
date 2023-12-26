@@ -10,7 +10,6 @@ type UserDataType = {
   email: string;
   firstName: string;
   lastName: string;
-  password: string;
   score: number;
 };
 
@@ -22,6 +21,7 @@ const DashboardQuizPage = () => {
   const fetchScores = async () => {
     const response = await fetch("http://localhost:3000/api/scores");
     const result = await response.json();
+    result.splice(10);
     setUserData(result);
   };
 
