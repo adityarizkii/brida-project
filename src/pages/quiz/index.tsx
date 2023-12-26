@@ -71,7 +71,7 @@ const DashboardQuizPage = () => {
   }
 
   const handleStart = async () => {
-    await fetch("http://localhost:3000/api/start-quiz");
+    await fetch("https://ecosaver.vercel.app/api/start-quiz");
     router.push("/quiz/start");
   };
 
