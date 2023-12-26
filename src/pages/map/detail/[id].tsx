@@ -93,7 +93,7 @@ const DetailSatwaPage = () => {
         <div className="grid md:grid-cols-2">
           <div className="left mb-[60px]">
             <div className="mx-auto mb-10 flex max-w-[300px] items-center justify-center gap-3 overflow-hidden rounded-md border px-8 py-4 shadow-2xl md:max-w-[370px] md:py-12 lg:max-w-[600px] lg:gap-5">
-              <div className="rounded-md border p-1 hover:bg-slate-300 lg:p-2 lg:p-2">
+              <div className="rounded-md border p-1 hover:bg-slate-300 lg:p-2">
                 <Link href={"/map/detail/" + prevIdx}>
                   <IoIosArrowBack size={24} />
                 </Link>
