@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -32,7 +33,9 @@ const Quiz = () => {
         data-aos="zoom-in"
         data-aos-delay="200"
       >
-        <img src="/maskot1.svg" alt="maskot" />
+        <div className="relative h-[275px] w-[245px]">
+          <Image src="/maskot1.svg" alt="maskot" fill />
+        </div>
       </div>
       <div
         className="left mb-6 flex flex-col items-center px-2 py-5  text-center"
@@ -61,7 +64,7 @@ const Quiz = () => {
           </h1>
           <ul>
             {scoresData?.map((scoreData, idx) => (
-              <li>
+              <li key={idx}>
                 <div className="mb-4 flex justify-between rounded-md bg-[#F8F9FB] px-5 py-3 text-neutral500">
                   <span>{`${++idx}. ${scoreData.firstName}`}</span>
                   <span>{scoreData.score}</span>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const About = () => {
@@ -18,22 +19,18 @@ const About = () => {
       </div>
       <div className="grid md:grid-cols-2">
         <div className="mx-auto hidden md:block" data-aos="fade-right">
-          <img
-            src="/duarusa.svg"
-            alt="dua rusa"
-            className="mb-7 w-[300px] lg:w-[400px]"
-          />
-          <img
-            src="/nontonrusa.svg"
-            alt="nonton rusa"
-            className="w-[200px] lg:w-[300px]"
-          />
+          <div className="relative mb-7 w-[300px] lg:w-[400px]">
+            <Image src="/duarusa.svg" alt="dua rusa" fill />
+          </div>
+          <div className="relative w-[200px] lg:w-[300px]">
+            <Image src="/nontonrusa.svg" alt="nonton rusa" fill />
+          </div>
         </div>
         <div className="flex flex-col gap-9" data-aos="fade-left">
           <div className="flex gap-4 rounded-md border px-7 py-6 shadow-md md:max-w-[400px] lg:h-[150px] lg:max-w-[600px] lg:py-[30px]">
             <div className="">
-              <div className="w-[40px] lg:w-[45px]">
-                <img src="/map.svg" alt="map" />
+              <div className="relative w-[40px] lg:w-[45px]">
+                <Image src="/map.svg" alt="map" fill />
               </div>
             </div>
             <div className="">
@@ -48,8 +45,8 @@ const About = () => {
           </div>
           <div className="flex gap-4 rounded-md border px-7 py-6 shadow-md md:max-w-[400px] lg:h-[150px] lg:max-w-[600px] lg:py-[30px]">
             <div className="">
-              <div className="w-[40px] lg:w-[45px]">
-                <img src="/map.svg" alt="map" />
+              <div className="relative w-[40px] lg:w-[45px]">
+                <Image src="/map.svg" alt="map" fill />
               </div>
             </div>
             <div className="">
@@ -64,8 +61,8 @@ const About = () => {
           </div>
           <div className="flex gap-4 rounded-md border px-7 py-6 shadow-md md:max-w-[400px] lg:h-[150px] lg:max-w-[600px] lg:py-[30px]">
             <div className="">
-              <div className="w-[40px] lg:w-[45px]">
-                <img src="/map.svg" alt="map" />
+              <div className="relative w-[40px] lg:w-[45px]">
+                <Image src="/map.svg" alt="map" fill />
               </div>
             </div>
             <div className="">

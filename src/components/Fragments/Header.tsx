@@ -25,7 +25,7 @@ const Header = (props: propsType) => {
   useEffect(() => {
     const pathname = path.split("/");
     setPathname(pathname);
-  }, []);
+  }, [path]);
 
   const handleLogout = () => {
     removeCookies("token");
@@ -37,7 +37,7 @@ const Header = (props: propsType) => {
   useEffect(() => {
     setFirstName(cookies.firstName);
     setToken(cookies.token);
-  });
+  }, [cookies, token]);
 
   return (
     <>
@@ -137,7 +137,9 @@ const Header = (props: propsType) => {
         }`}
       >
         <div className="mx-7 my-12" onClick={() => setIsSidebarActive(false)}>
-          <img src="/logo.svg" alt="logo" />
+          <div className="relative h-[48px] w-[144px]">
+            <Image src="/logo.svg" alt="logo" fill />
+          </div>
         </div>
         <ul className="mb-6">
           <li className="bg-primary px-14 py-3 text-center text-white">

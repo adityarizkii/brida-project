@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -57,8 +58,8 @@ const News = () => {
               data-aos-delay="100"
               key={data.idArtikel}
             >
-              <div className="rounded-lg">
-                <img src={data.image} alt="gambar artikel" />
+              <div className="relative h-[235px] w-[353px] rounded-lg">
+                <Image src={data.image} alt="gambar artikel" fill />
               </div>
               <div className="p-4">
                 <span className="mb-2 text-sm font-medium text-blue-500">

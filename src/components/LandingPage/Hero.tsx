@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -66,11 +67,9 @@ const Hero = () => {
         data-aos="fade-left"
         data-aos-delay="700"
       >
-        <img
-          src="/hero.svg"
-          alt="hero"
-          className="h-full md:min-w-[350px] lg:min-w-[460px]"
-        />
+        <div className="relative h-full md:min-w-[350px] lg:min-w-[460px]">
+          <Image src="/hero.svg" alt="hero" fill />
+        </div>
       </div>
     </div>
   );

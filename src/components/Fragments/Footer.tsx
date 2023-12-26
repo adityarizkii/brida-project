@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaFacebook, FaGoogle, FaInstagram } from "react-icons/fa6";
@@ -6,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="bg-[#23272E] px-8 py-10 md:py-12 lg:px-[100px]">
       <div className="mb-6 flex flex-col items-center gap-6 md:mb-8 md:flex-row md:justify-between">
-        <img src="/logo2.svg" alt="logo" />
+        <Image src="/logo2.svg" alt="logo" width={150} height={48} />
         <ul className="flex w-full justify-center gap-12 text-white md:gap-6">
           <li>
             <Link href="/">Beranda</Link>

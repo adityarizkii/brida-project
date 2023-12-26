@@ -133,7 +133,9 @@ const DetailSatwaPage = () => {
                 className="overflow-hidden rounded-md shadow-2xl lg:w-full"
                 key={data.idSatwa}
               >
-                <img src={data.image} alt="satwa-image" className="lg:w-full" />
+                <div className="relative h-[243px] w-[365px]">
+                  <Image src={data.image} alt="satwa-image" fill />
+                </div>
                 <h3 className="my-4 px-4 font-semibold">{data.name}</h3>
               </Link>
             ))}
