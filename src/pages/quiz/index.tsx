@@ -41,8 +41,6 @@ const DashboardQuizPage = () => {
               return (
                 <ScoreBar
                   key={idx}
-                  dataAos="zoom-in"
-                  dataAosDelay={idx + 1 + "00"}
                   score={data.score}
                   name={data.firstName}
                   position={++idx}
@@ -69,8 +67,8 @@ const DashboardQuizPage = () => {
   }
 
   const handleStart = async () => {
-    await fetch("https://ecosaver.vercel.app/api/start-quiz");
-    router.push("/quiz/start");
+    const response = await fetch("https://ecosaver.vercel.app/api/start-quiz");
+    if (response.status === 200) return router.push("/quiz/start");
   };
 
   return (
