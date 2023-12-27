@@ -56,8 +56,6 @@ const DashboardQuizPage = () => {
               return (
                 <ScoreBar
                   key={idx}
-                  dataAos="zoom-in"
-                  dataAosDelay={idx + 1 + "00"}
                   score={data.score}
                   name={data.firstName}
                   position={++idx}

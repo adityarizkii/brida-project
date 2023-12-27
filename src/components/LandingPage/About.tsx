@@ -29,7 +29,7 @@ const About = () => {
         <div className="flex flex-col gap-9" data-aos="fade-left">
           <div className="flex gap-4 rounded-md border px-7 py-6 shadow-md md:max-w-[400px] lg:h-[150px] lg:max-w-[600px] lg:py-[30px]">
             <div className="">
-              <div className="relative w-[40px] lg:w-[45px]">
+              <div className="relative w-[40px] lg:h-[45px] lg:w-[45px]">
                 <Image src="/map.svg" alt="map" fill />
               </div>
             </div>
@@ -45,8 +45,8 @@ const About = () => {
           </div>
           <div className="flex gap-4 rounded-md border px-7 py-6 shadow-md md:max-w-[400px] lg:h-[150px] lg:max-w-[600px] lg:py-[30px]">
             <div className="">
-              <div className="relative w-[40px] lg:w-[45px]">
-                <Image src="/map.svg" alt="map" fill />
+              <div className="relative w-[40px] lg:h-[45px] lg:w-[45px]">
+                <Image src="/clipboard-text.svg" alt="map" fill />
               </div>
             </div>
             <div className="">
@@ -61,8 +61,8 @@ const About = () => {
           </div>
           <div className="flex gap-4 rounded-md border px-7 py-6 shadow-md md:max-w-[400px] lg:h-[150px] lg:max-w-[600px] lg:py-[30px]">
             <div className="">
-              <div className="relative w-[40px] lg:w-[45px]">
-                <Image src="/map.svg" alt="map" fill />
+              <div className="relative w-[40px] lg:h-[45px] lg:w-[45px]">
+                <Image src="/award.svg" alt="map" fill />
               </div>
             </div>
             <div className="">

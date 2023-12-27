@@ -1,8 +1,8 @@
 import React from "react";
 
 type PropsType = {
-  dataAos: string;
-  dataAosDelay: string;
+  dataAos?: string;
+  dataAosDelay?: string;
   name: string;
   score: number;
   position: number;

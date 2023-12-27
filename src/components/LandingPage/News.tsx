@@ -85,7 +85,7 @@ const News = () => {
       <div className="flex justify-center">
         <Link
           href={"/news"}
-          className="rounded-md border border-primary px-4 py-1.5 text-primary duration-200 hover:bg-primaryHover hover:text-white lg:px-8 lg:py-3.5 lg:text-2xl"
+          className="rounded-md border border-primary px-4 py-1.5 font-medium text-primary duration-200 hover:bg-primaryHover hover:text-white lg:px-8 lg:py-2.5 lg:text-lg"
         >
           Selengkapnya
         </Link>

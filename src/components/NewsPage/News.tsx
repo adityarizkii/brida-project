@@ -73,14 +73,9 @@ const News = () => {
       <h1 className="mb-4 text-center text-2xl font-semibold text-neutral950 md:mb-16 md:text-[32px]">
         Berita Satwa NTB
       </h1>
-      <div className="flex items-center justify-between lg:mb-24">
+      <div className="lg:mb-24">
         {/* back link */}
         <BackLink href={"/"}>Kembali ke Halaman Utama</BackLink>
-        <input
-          type="text"
-          className="w-[200px] rounded-md bg-[#E5E5E7] px-3 py-1.5"
-          placeholder="Cari"
-        />
       </div>
       {/* grid */}
       {dataArticle?.map((dataArray: any, idx: number) => {

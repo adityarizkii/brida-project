@@ -31,7 +31,7 @@ const Hero = () => {
             href={"/login"}
             className="rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-white duration-200 hover:bg-primaryHover"
           >
-            Ikuti Quiz
+            Ikuti Kuis
           </Link>
           <Link
             href="/map"

@@ -84,7 +84,7 @@ const LoginPage = () => {
                 id="password"
                 name="password"
                 className="rounded-md border bg-input p-3"
-                placeholder="Masukkan kata sandi anda"
+                placeholder="Masukkan kata sandi anda "
                 required
               />
             </div>
