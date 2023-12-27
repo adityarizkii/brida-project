@@ -11,7 +11,12 @@ const Map = () => {
         data-aos-duration="700"
       >
         <div className="relative h-full w-full">
-          <Image src={"/map2.svg"} alt="map" fill />
+          <Image
+            src={"/map2.jpg"}
+            alt="map"
+            fill
+            style={{ objectFit: "fill" }}
+          />
           <div className="absolute bottom-0 top-0 w-full bg-gray-900 opacity-50"></div>
         </div>
         <Link

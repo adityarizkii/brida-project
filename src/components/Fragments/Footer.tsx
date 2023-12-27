@@ -7,7 +7,9 @@ const Footer = () => {
   return (
     <footer className="bg-[#23272E] px-8 py-10 md:py-12 lg:px-[100px]">
       <div className="mb-6 flex flex-col items-center gap-6 md:mb-8 md:flex-row md:justify-between">
-        <Image src="/logo2.svg" alt="logo" width={150} height={48} />
+        <div className="relative h-[48px] w-[150px]">
+          <Image src="/logo2.svg" alt="logo" fill priority />
+        </div>
         <ul className="flex w-full justify-center gap-12 text-white md:gap-6">
           <li>
             <Link href="/">Beranda</Link>

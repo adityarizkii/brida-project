@@ -61,7 +61,7 @@ const News = () => {
               key={data.idArtikel}
             >
               <div className="relative h-[235px] w-[353px] rounded-lg">
-                <Image src={data.image} alt="gambar artikel" fill />
+                <Image src={data.image} alt="gambar artikel" fill sizes="au" />
               </div>
               <div className="p-4">
                 <span className="mb-2 text-sm font-medium text-blue-500">

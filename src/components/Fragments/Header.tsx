@@ -44,7 +44,7 @@ const Header = (props: propsType) => {
         className={`fixed top-0 z-10 flex w-full items-center justify-between border-b bg-white shadow-md ${classname}`}
       >
         <div className="relative h-12 w-36 ">
-          <Image src={"/logo.svg"} alt="logo" fill />
+          <Image src={"/logo.svg"} alt="logo" fill priority />
         </div>
         <ul className="hidden gap-12 lg:flex">
           <li
@@ -137,7 +137,7 @@ const Header = (props: propsType) => {
       >
         <div className="mx-7 my-12" onClick={() => setIsSidebarActive(false)}>
           <div className="relative h-[48px] w-[144px]">
-            <Image src="/logo.svg" alt="logo" fill />
+            <Image src="/logo.svg" alt="logo" fill priority />
           </div>
         </div>
         <ul className="mb-6">

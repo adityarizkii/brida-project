@@ -68,7 +68,7 @@ const Hero = () => {
         data-aos-delay="700"
       >
         <div className="relative h-full md:min-w-[350px] lg:min-w-[460px]">
-          <Image src="/hero.svg" alt="hero" fill />
+          <Image src="/hero.svg" alt="hero" fill priority />
         </div>
       </div>
     </div>

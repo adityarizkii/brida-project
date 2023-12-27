@@ -15,7 +15,7 @@ const EditProfilePage = () => {
   const [dataUser, setDataUser] = useState<DataUserType>();
 
   const fetchDataUser = async () => {
-    const response = await fetch("http://localhost:3000/api/single-user");
+    const response = await fetch("https://ecosaver.vercel.app/api/single-user");
     const result = await response.json();
     // console.log(result);
     setDataUser(result);

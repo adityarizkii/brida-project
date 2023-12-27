@@ -116,7 +116,7 @@ const DetailSatwaPage = () => {
             </div>
           </div>
           <div className="right">
-            <div className="mx-auto max-w-[300px] overflow-y-scroll rounded-md border p-4 text-sm font-medium shadow-2xl md:max-w-[350px] lg:max-h-[400px] lg:max-w-[500px] lg:text-base lg:tracking-wide">
+            <div className="mx-auto max-w-[300px] overflow-y-scroll rounded-md border p-8 text-sm font-medium shadow-2xl md:max-w-[350px] lg:max-h-[400px] lg:max-w-[500px] lg:text-base lg:tracking-wide">
               {filteredData?.description}
             </div>
           </div>
