@@ -30,6 +30,7 @@ const QuizPage = () => {
   const [currOption, setCurrOption] = useState<string | undefined>(undefined);
   const [cookies, setCookies, removeCookies] = useCookies();
   const [isTimeLeft, setIsTimeLeft] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [radioValues, setRadioValues] = useState<Array<boolean>>(
     Array(currSoal?.opsi.length).fill(false)
   );
@@ -58,6 +59,7 @@ const QuizPage = () => {
   };
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     recordAnswer();
 
     let score = 0;
@@ -75,9 +77,8 @@ const QuizPage = () => {
     localStorage.setItem("dataSoal", JSON.stringify(dataSoal));
     localStorage.setItem("userOptions", JSON.stringify(userOptions));
 
-    removeCookies("quizToken");
-    router.push("/quiz/finish");
-
+    setIsLoading(false);
+    router.replace("/quiz/finish");
     // console.log("score " + score);
     // console.log(dataSoal);
     // console.log(userOptions);
