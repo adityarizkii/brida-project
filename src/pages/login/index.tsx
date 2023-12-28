@@ -37,7 +37,7 @@ const LoginPage = () => {
       return;
     }
 
-    router.push("/quiz");
+    router.replace("/quiz");
     setIsLoading(false);
   };
   return (
