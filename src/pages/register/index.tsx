@@ -71,7 +71,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="h-screen overflow-hidden">
+    <div className={isLoading ? "h-screen overflow-hidden" : ""}>
       {isLoading && <Loading />}
       <div className="grid h-screen lg:grid-cols-2">
         <div className="">

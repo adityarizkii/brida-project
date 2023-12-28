@@ -41,7 +41,7 @@ const LoginPage = () => {
     setIsLoading(false);
   };
   return (
-    <div className="h-screen overflow-hidden">
+    <div className={isLoading ? "h-screen overflow-hidden" : ""}>
       {isLoading && <Loading />}
       <div className="grid h-screen lg:grid-cols-2">
         <div className="flex flex-col justify-center rounded-3xl border shadow-2xl md:px-28">
