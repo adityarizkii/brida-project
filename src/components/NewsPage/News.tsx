@@ -80,7 +80,7 @@ const News = () => {
       {/* grid */}
       {dataArticle?.map((dataArray: any, idx: number) => {
         return (
-          <div className="flex justify-center lg:block">
+          <div className="flex justify-center lg:block" key={idx}>
             <div
               className="mb-10 grid gap-10 lg:mb-32 lg:grid-cols-2"
               key={idx}

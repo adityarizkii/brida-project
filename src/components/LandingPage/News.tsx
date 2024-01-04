@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import CustomImage from "../Fragments/CustomImage";
 
 type DataArticleType = {
   idArtikel: string;

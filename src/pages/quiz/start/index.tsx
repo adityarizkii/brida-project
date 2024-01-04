@@ -181,7 +181,7 @@ const QuizPage = () => {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
-            <Timer seconds={1300} setIsTimeLeft={setIsTimeLeft} />
+            <Timer seconds={120} setIsTimeLeft={setIsTimeLeft} />
           </div>
         </div>
         {/* box */}
