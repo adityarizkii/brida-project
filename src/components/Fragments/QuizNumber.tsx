@@ -29,14 +29,14 @@ const QuizNumber = ({
 
   return (
     <div
-      className={`h-[60px] w-[50px] overflow-hidden rounded-md border-2 ${bgcolor} hover:cursor-pointer ${
+      className={`h-[40px] w-8 overflow-hidden rounded-md border-2 lg:h-[60px] lg:w-[50px] ${bgcolor} hover:cursor-pointer ${
         isActive ? "border-neutral-900" : "border-neutral-500"
       }`}
       onClick={() => {
         onClick(toIndex);
       }}
     >
-      <div className="h-[35px] bg-white text-center text-xl font-semibold">
+      <div className="h-5 bg-white text-center text-xs font-semibold lg:h-[35px] lg:text-xl">
         <span>{children}</span>
       </div>
     </div>

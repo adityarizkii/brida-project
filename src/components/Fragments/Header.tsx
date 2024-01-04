@@ -30,7 +30,7 @@ const Header = (props: propsType) => {
   const handleLogout = () => {
     removeCookies("token");
     removeCookies("firstName");
-    router.push("/login");
+    router.replace("/login");
   };
 
   useEffect(() => {
@@ -43,9 +43,11 @@ const Header = (props: propsType) => {
       <div
         className={`fixed top-0 z-10 flex w-full items-center justify-between border-b bg-white shadow-md ${classname}`}
       >
-        <div className="relative h-12 w-36 ">
-          <Image src={"/logo.svg"} alt="logo" fill priority />
-        </div>
+        <Link href={"/"}>
+          <div className="relative h-12 w-36">
+            <Image src={"/logo.svg"} alt="logo" fill priority />
+          </div>
+        </Link>
         <ul className="hidden gap-12 lg:flex">
           <li
             className={`font-medium transition duration-200 hover:-translate-y-1 ${
@@ -77,7 +79,7 @@ const Header = (props: propsType) => {
           </li>
         </ul>
         {token && (
-          <div className="relative flex gap-3">
+          <div className="relative hidden gap-3 lg:flex">
             <h3 className="text-lg font-semibold text-primary">{firstName}</h3>
             <button
               onClick={() => {
@@ -131,7 +133,7 @@ const Header = (props: propsType) => {
       </div>
       {/* sidebar */}
       <div
-        className={`fixed top-0 z-10 h-screen overflow-y-scroll bg-red-300 transition-all duration-300 ${
+        className={`fixed top-0 z-10 h-screen overflow-y-scroll bg-white pb-12 shadow-xl shadow-gray-700 transition-all duration-300 ${
           isSidebarActive ? "right-0" : "-right-[250px]"
         }`}
       >
@@ -141,21 +143,68 @@ const Header = (props: propsType) => {
           </div>
         </div>
         <ul className="mb-6">
-          <li className="bg-primary px-14 py-3 text-center text-white">
-            Beranda
+          <li
+            className={`px-14 py-3 text-center text-neutral500 ${
+              pathname && !pathname[1] ? "bg-primary text-white" : ""
+            }`}
+          >
+            <Link href={"/"}>Beranda</Link>
           </li>
-          <li className="px-14 py-3 text-center text-neutral500">Peta</li>
-          <li className="px-14 py-3 text-center text-neutral500">Artikel</li>
-          <li className="px-14 py-3 text-center text-neutral500">Permainan</li>
+          <li
+            className={`px-14 py-3 text-center text-neutral500 ${
+              pathname && pathname[1] === "map" ? "bg-primary text-white" : ""
+            }`}
+          >
+            <Link href={"/map"}>Peta</Link>
+          </li>
+          <li
+            className={`px-14 py-3 text-center text-neutral500 ${
+              pathname && pathname[1] === "news" ? "bg-primary text-white" : ""
+            }`}
+          >
+            <Link href={"/news"}>Berita</Link>
+          </li>
+          <li
+            className={`px-14 py-3 text-center text-neutral500 ${
+              pathname && pathname[1] === "quiz" ? "bg-primary text-white" : ""
+            }`}
+          >
+            <Link href={"/quiz"}>Kuis</Link>
+          </li>
         </ul>
-        <div className="mx-[30px] mb-[100px] h-[1px] bg-neutral500"></div>
+        <div className="mx-[30px] mb-[100px] h-[1px] bg-neutral500" />
         <div className="flex flex-col items-center gap-2.5">
-          <button className="rounded-lg bg-primary px-6 py-2 font-medium text-white">
-            Masuk
-          </button>
-          <button className="rounded-lg border border-primary px-6 py-2 font-medium text-primary">
-            Daftar
-          </button>
+          {!token && (
+            <>
+              <button
+                className="rounded-lg bg-primary px-6 py-2 font-medium text-white"
+                onClick={() => {
+                  router.push("/login");
+                }}
+              >
+                Masuk
+              </button>
+              <button
+                className="rounded-lg border border-primary px-6 py-2 font-medium text-primary"
+                onClick={() => {
+                  router.push("/register");
+                }}
+              >
+                Daftar
+              </button>
+            </>
+          )}
+          {token && (
+            <>
+              <h3 className="mb-2 font-semibold text-primary">{firstName}</h3>
+              <button
+                onClick={handleLogout}
+                className="w-full border-2 bg-red-100 py-2"
+              >
+                Log out
+              </button>
+            </>
+          )}
         </div>
       </div>
     </>

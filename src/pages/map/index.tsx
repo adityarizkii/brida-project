@@ -13,12 +13,12 @@ const MapPage = () => {
         isSidebarActive={isSidebarActive}
         setIsSidebarActive={setisSidebarActive}
       ></Header>
-      <div className="lg:px-[100px] lg:pb-36 lg:pt-[150px]">
-        <div className="mx-auto mb-[70px] text-center lg:max-w-3xl">
-          <h1 className="mb-[50px] text-[32px] font-semibold text-black950">
+      <div className="px-6 pb-10 pt-[130px] lg:px-[100px] lg:pb-36 lg:pt-[150px]">
+        <div className="mx-auto mb-8 text-center lg:mb-[70px] lg:max-w-3xl">
+          <h1 className="mb-6 text-2xl font-semibold text-black950 lg:mb-[50px] lg:text-[32px]">
             Peta Satwa NTB
           </h1>
-          <p>
+          <p className="text-sm lg:text-base">
             Di peta satwa ini, kamu akan menemukan berbagai macam satwa asli
             Nusa Tenggara Barat yang memukau. Kami menyediakan detail lengkap
             tentang masing-masing satwa. Jadi, ketika kamu menjelajahi peta

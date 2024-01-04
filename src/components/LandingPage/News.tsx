@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import CustomImage from "../Fragments/CustomImage";
 
 type DataArticleType = {
   idArtikel: string;
@@ -55,13 +56,15 @@ const News = () => {
           return (
             <div
               className="card mx-auto max-w-[300px] rounded-lg border shadow-xl md:max-w-[336px] lg:max-w-[370px]"
-              data-aos="fade-up"
-              data-aos-duration="700"
-              data-aos-delay="100"
               key={data.idArtikel}
             >
-              <div className="relative h-[235px] w-[353px] rounded-lg">
-                <Image src={data.image} alt="gambar artikel" fill sizes="au" />
+              <div className="relative h-[235px] overflow-hidden rounded-lg">
+                <Image
+                  src={data.image}
+                  alt="gambar artikel"
+                  fill
+                  objectFit="cover"
+                />
               </div>
               <div className="p-4">
                 <span className="mb-2 text-sm font-medium text-blue-500">

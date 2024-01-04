@@ -2,7 +2,7 @@ import Loading from "@/components/Fragments/Loading";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 
 type UserType = {
   firstName: string;
@@ -40,13 +40,16 @@ const LoginPage = () => {
     router.replace("/quiz");
     setIsLoading(false);
   };
+
   return (
     <div className={isLoading ? "h-screen overflow-hidden" : ""}>
       {isLoading && <Loading />}
       <div className="grid h-screen lg:grid-cols-2">
-        <div className="flex flex-col justify-center rounded-3xl border shadow-2xl md:px-28">
-          <Link
-            href="/"
+        <div className="flex flex-col justify-center rounded-3xl border px-6 shadow-2xl md:px-28">
+          <span
+            onClick={() => {
+              router.push("/");
+            }}
             className="mb-14 flex items-center gap-2 font-semibold text-primary"
           >
             <Image
@@ -59,7 +62,7 @@ const LoginPage = () => {
               Kembali ke Halaman Utama
             </span>
             <span className="text-sm font-semibold md:hidden">Kembali</span>
-          </Link>
+          </span>
           <h1 className="mb-6 text-center text-3xl font-bold">Sign In</h1>
           <form className="flex flex-col gap-6" onSubmit={handleSignIn}>
             <div className="flex flex-col gap-2">

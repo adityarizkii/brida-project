@@ -31,11 +31,11 @@ const Timer = ({ seconds, setIsTimeLeft }: PropsType) => {
 
   return (
     <p
-      className={`w-32 text-xl font-medium ${
+      className={`w-10 font-medium lg:w-32 lg:text-xl ${
         timeLeft <= 10 ? "text-error" : ""
       } `}
     >
-      <span className="mr-3">Time : </span>
+      <span className="mr-3 hidden lg:inline">Time : </span>
       {formatTime(timeLeft)}
     </p>
   );

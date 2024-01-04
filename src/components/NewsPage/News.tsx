@@ -69,56 +69,61 @@ const News = () => {
   }, []);
 
   return (
-    <div>
+    <div className="mt-16">
       <h1 className="mb-4 text-center text-2xl font-semibold text-neutral950 md:mb-16 md:text-[32px]">
         Berita Satwa NTB
       </h1>
-      <div className="lg:mb-24">
+      <div className="mb-6 ml-6 lg:mb-24">
         {/* back link */}
         <BackLink href={"/"}>Kembali ke Halaman Utama</BackLink>
       </div>
       {/* grid */}
       {dataArticle?.map((dataArray: any, idx: number) => {
         return (
-          <div className="grid gap-10 lg:mb-32 lg:grid-cols-2" key={idx}>
-            {dataArray?.map((data: any, idx: number) => {
-              if (Array.isArray(data)) {
-                return (
-                  <div className="flex flex-col gap-8" key={idx}>
-                    {data?.map((dataArr, idx) => {
-                      const dateObject = new Date(dataArr.year);
-                      const year = dateObject.getFullYear();
-                      const month = monthNames[dateObject.getMonth()];
-                      const day = dateObject.getDate();
+          <div className="flex justify-center lg:block">
+            <div
+              className="mb-10 grid gap-10 lg:mb-32 lg:grid-cols-2"
+              key={idx}
+            >
+              {dataArray?.map((data: any, idx: number) => {
+                if (Array.isArray(data)) {
+                  return (
+                    <div className="flex flex-col gap-8" key={idx}>
+                      {data?.map((dataArr, idx) => {
+                        const dateObject = new Date(dataArr.year);
+                        const year = dateObject.getFullYear();
+                        const month = monthNames[dateObject.getMonth()];
+                        const day = dateObject.getDate();
 
-                      return (
-                        <SmallCard
-                          key={idx}
-                          title={dataArr.title}
-                          img={dataArr.image}
-                          url={dataArr.url}
-                          year={`${year} ${month} ${day}`}
-                        />
-                      );
-                    })}
-                  </div>
-                );
-              } else {
-                const dateObject = new Date(data.year);
-                const year = dateObject.getFullYear();
-                const month = monthNames[dateObject.getMonth()];
-                const day = dateObject.getDate();
-                return (
-                  <BigCard
-                    key={idx}
-                    title={data.title}
-                    img={data.image}
-                    url={data.url}
-                    year={`${year} ${month} ${day}`}
-                  />
-                );
-              }
-            })}
+                        return (
+                          <SmallCard
+                            key={idx}
+                            title={dataArr.title}
+                            img={dataArr.image}
+                            url={dataArr.url}
+                            year={`${year} ${month} ${day}`}
+                          />
+                        );
+                      })}
+                    </div>
+                  );
+                } else {
+                  const dateObject = new Date(data.year);
+                  const year = dateObject.getFullYear();
+                  const month = monthNames[dateObject.getMonth()];
+                  const day = dateObject.getDate();
+                  return (
+                    <BigCard
+                      key={idx}
+                      title={data.title}
+                      img={data.image}
+                      url={data.url}
+                      year={`${year} ${month} ${day}`}
+                    />
+                  );
+                }
+              })}
+            </div>
           </div>
         );
       })}

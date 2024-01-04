@@ -6,7 +6,7 @@ const Map = () => {
   return (
     <div className="mb-16 grid grid-cols-3">
       <div
-        className="relative col-span-2 flex h-[335px] items-center justify-center"
+        className="relative col-span-3 flex h-[143px] items-center justify-center md:h-[375px] lg:col-span-2 lg:h-[335px]"
         data-aos="zoom-in"
         data-aos-duration="700"
       >
@@ -21,12 +21,12 @@ const Map = () => {
         </div>
         <Link
           href="/map"
-          className="absolute rounded-lg bg-primary px-7 py-5 text-xl font-bold text-white duration-200 hover:bg-primaryHover"
+          className="absolute rounded-md bg-primary px-4 py-2 font-medium text-white duration-200 hover:bg-primaryHover md:px-6 md:py-4 lg:rounded-lg lg:px-7 lg:py-5 lg:text-xl"
         >
           Lihat Peta
         </Link>
       </div>
-      <div className="pl-10 pt-10" data-aos="fade-left">
+      <div className="hidden pl-10 pt-10 lg:block" data-aos="fade-left">
         <h1 className="mb-6 text-center text-xl font-semibold text-neutral950 md:text-[32px] lg:text-4xl">
           Peta Satwa
         </h1>

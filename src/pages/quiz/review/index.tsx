@@ -79,31 +79,37 @@ const ReviewPage = () => {
   };
 
   return (
-    <div className="px-[100px]">
-      <div className="flex justify-center py-12">
-        <Image src={"/logo.svg"} width={154} height={48} alt="log" />
+    <div className="px-4 lg:px-[100px]">
+      <div className="relative mx-auto mb-2 h-[38px] w-[125px] py-10 lg:h-[48px] lg:w-[154px]">
+        <Image src={"/logo.svg"} alt="log" fill />
       </div>
-      <div className="pb-7 pt-16">
-        <div className="flex justify-between">
-          <div className="" onClickCapture={removeQuizData}>
-            <BackLink href="/quiz">Kembali ke Halaman Utama</BackLink>
-          </div>
-          <h1 className="text-4xl font-semibold">Kuis Satwa NTB</h1>
-          <span className="text-2xl font-medium">Timer 00:00</span>
+      <div className="mb-4 flex items-center justify-between lg:pb-7 lg:pt-16">
+        <div onClickCapture={removeQuizData}>
+          <BackLink href="/quiz">Kembali ke Halaman Utama</BackLink>
         </div>
+        <h1 className="text-center font-semibold lg:text-left lg:text-4xl">
+          Kuis Satwa NTB
+        </h1>
+        <span className="text-sm font-medium lg:text-2xl">Timer 00:00</span>
       </div>
       {/* box */}
-      <div className="relative mb-10 grid grid-cols-2 gap-20 rounded-md border px-28 pb-8 pt-24 shadow-md">
+      <div className="relative mb-10 grid grid-cols-2 rounded-md border px-8 py-6 shadow-md lg:gap-20 lg:px-28 lg:pb-8 lg:pt-24">
         {currSoal?.image && (
-          <div className="relative h-[296px] w-[417px] overflow-hidden rounded-lg">
+          <div className="relative col-span-2 mb-4 h-[165px] overflow-hidden rounded-lg lg:col-span-1 lg:mb-0 lg:h-[296px] lg:w-[417px]">
             <Image src={currSoal.image} alt="gambar soal" fill />
           </div>
         )}
-        <div className={currSoal?.image ? "" : "col-span-2"}>
-          <h2 className="text-2xl font-medium">Pertanyaan {currIdx + 1}/10</h2>
-          <p className="my-3 text-lg font-medium">{currSoal?.soal}</p>
-          <p className="mb-6 text-lg font-medium">Jawab:</p>
-          <form className="mb-2.5 flex flex-col gap-2.5 lg:mb-4">
+        <div
+          className={`${
+            currSoal?.image ? "" : "col-span-2"
+          } col-span-2 lg:col-span-1`}
+        >
+          <h2 className="text-lg font-medium lg:text-2xl">
+            Pertanyaan {currIdx + 1}/10
+          </h2>
+          <p className="my-3 font-medium lg:text-lg">{currSoal?.soal}</p>
+          <p className="mb-2 font-medium lg:mb-6 lg:text-lg">Jawab:</p>
+          <form className="mb-8 flex flex-col gap-2.5">
             {currSoal?.opsi.map((option, idx) => {
               const isChecked = userOptions?.[currIdx].option === option;
               return (
@@ -142,22 +148,24 @@ const ReviewPage = () => {
         </div>
         <div className="flex flex-col gap-6">
           <button
-            className="h-fit w-fit rounded-md border border-primary px-6 py-3 font-medium text-primary duration-100 hover:bg-primaryHover hover:text-white"
+            className="rounded-md border border-primary px-2 py-2 text-sm font-medium text-primary duration-100 hover:bg-primaryHover hover:text-white lg:h-fit lg:w-fit lg:px-6 lg:py-3 lg:text-base"
             onClick={handlePrev}
           >
-            Soal Sebelumnya
+            Sebelumnya
           </button>
           <div className="">
-            <h3 className="my-4 text-lg font-semibold">Penjelasan :</h3>
-            <p className="font-semibold">{currSoal?.penjelasan}</p>
+            <h3 className="my-4 font-semibold lg:text-lg">Penjelasan :</h3>
+            <p className="text-sm font-semibold lg:text-base">
+              {currSoal?.penjelasan}
+            </p>
           </div>
         </div>
         <div className="flex flex-row-reverse">
           <button
-            className="h-fit rounded-md bg-primary px-6 py-3 text-white hover:bg-primaryHover"
+            className="h-fit rounded-md bg-primary px-2 py-2 text-sm text-white hover:bg-primaryHover lg:px-6 lg:py-3 lg:text-base"
             onClick={handleNext}
           >
-            Soal Selanjutnya
+            Selanjutnya
           </button>
         </div>
       </div>
@@ -166,7 +174,7 @@ const ReviewPage = () => {
         <h3 className="mb-4 text-2xl font-semibold text-neutral950">
           Navigasi Kuis
         </h3>
-        <div className="flex gap-5">
+        <div className="flex gap-1.5 lg:gap-5">
           {dataSoal?.map((soal, idx) => (
             <QuizNumber
               status={

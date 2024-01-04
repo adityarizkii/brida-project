@@ -79,30 +79,33 @@ const DashboardQuizPage = () => {
       />
       <div className="bg-slate-100 px-4 pb-20 pt-[130px] lg:px-[180px]">
         {/* hero */}
-        <div className=" mb-12 flex justify-between bg-white">
+        <div className="mb-6 flex justify-between bg-white lg:mb-12">
           <div className="py-10 pl-9" data-aos="fade-right">
-            <h1 className="mb-4 text-3xl font-semibold text-primary">
+            <h1 className="mb-4 text-2xl font-semibold text-primary lg:text-3xl">
               Beranda Kuis
             </h1>
-            <p className="mb-11 text-black950">
+            <p className="mb-7 text-base text-black950 lg:mb-11 lg:text-base">
               Jangan lewatkan kesempatan untuk menguji <br /> pengetahuanmu
               tentang satwa-satwa asli NTB. <br /> Ayo, ikuti kuisnya dan
               jadilah juara!
             </p>
             <button
-              className="rounded-lg bg-primary px-7 py-4 text-xl font-semibold text-white hover:bg-primaryHover"
+              className="rounded-lg bg-primary px-5 py-3 text-base font-semibold text-white hover:bg-primaryHover lg:px-7 lg:py-4 lg:text-xl"
               onClick={handleStart}
             >
               Mulai Kuis
             </button>
           </div>
-          <div className="relative h-[300px] w-[300px]" data-aos="fade-left">
+          <div
+            className="relative hidden h-[300px] w-[300px] lg:block"
+            data-aos="fade-left"
+          >
             <Image src={"/beranda-kuis.svg"} alt="img" fill />
           </div>
         </div>
         {/* leaderboard */}
-        <div className="realtive h-[468px] w-[988px] translate-x-5 translate-y-5 rounded-md bg-primary">
-          <div className="absolute -right-32 bottom-0 z-10">
+        <div className="realtive w-[full] translate-x-5 translate-y-5 rounded-md lg:h-[460px] lg:w-[988px] lg:bg-primary">
+          <div className="absolute -right-32 bottom-0 z-10 hidden lg:block">
             <Image
               src={"/maskot-game.svg"}
               alt="maskot"
@@ -114,8 +117,15 @@ const DashboardQuizPage = () => {
             <h2 className="mb-10 text-center text-2xl font-semibold text-primary">
               Leaderboard Kuis
             </h2>
-            <div className="mx-auto grid w-[665px] grid-cols-2 gap-16">
-              {element}
+            <div className="grid grid-cols-1 gap-x-10 gap-y-5 px-5 lg:mx-28 lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-5">
+              {userData?.map((data, idx) => (
+                <ScoreBar
+                  key={idx}
+                  score={data.score}
+                  name={data.firstName}
+                  position={++idx}
+                />
+              ))}
             </div>
           </div>
         </div>

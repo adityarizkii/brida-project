@@ -167,33 +167,51 @@ const QuizPage = () => {
       {isPopUp && isTimeLeft && (
         <PopUpSubmit setIsPopUp={setIsPopUp} handleSubmit={handleSubmit} />
       )}
-      <div className="px-[100px]">
+      <div className="px-4 lg:px-[100px]">
         <div className="pb-[18px] pt-8">
           <div className="flex items-center justify-between">
             <BackLink href="/quiz/unfinished" removeToken={removeCookies}>
               Batalkan Kuis
             </BackLink>
-            <Image src={"/logo.svg"} width={154} height={48} alt="log" />
-            <Timer seconds={120} setIsTimeLeft={setIsTimeLeft} />
+            <div className="relative h-[38px] w-[125px] lg:h-[48px] lg:w-[154px]">
+              <Image
+                src={"/logo.svg"}
+                alt="logo"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            </div>
+            <Timer seconds={1300} setIsTimeLeft={setIsTimeLeft} />
           </div>
         </div>
         {/* box */}
-        <div className="relative mb-10 grid grid-cols-2 gap-x-20 gap-y-12 rounded-md border px-[100px] pb-8 pt-12 shadow-md">
+        <div className="relative mb-5 grid rounded-md border p-4 pb-8 shadow-md lg:mb-10 lg:grid-cols-2 lg:gap-x-20 lg:gap-y-12 lg:px-[100px] lg:pt-12">
           {currSoal?.image && (
-            <div className="relative h-[279px] w-[370px] overflow-hidden rounded-lg">
-              <Image src={currSoal.image} alt="gambar soal" fill />
+            <div className="relative col-span-2 mb-4 h-[165px] overflow-hidden rounded-lg lg:col-span-1 lg:mb-0 lg:h-[279px] lg:w-[370px] ">
+              <Image
+                src={currSoal.image}
+                alt="gambar soal"
+                fill
+                objectFit="cover"
+              />
             </div>
           )}
-          <div className={currSoal?.image ? "" : "col-span-2"}>
-            <h2 className="text-xl font-medium">
+          <div
+            className={`${
+              currSoal?.image ? "" : "lg:col-span-2"
+            } col-span-2 lg:col-span-1`}
+          >
+            <h2 className="font-medium lg:text-xl">
               Pertanyaan {currSoal?.idxSoal}/10
             </h2>
-            <p className="my-3 font-medium">{currSoal?.soal}</p>
-            <p className="mb-6 font-medium">Jawab:</p>
-            <form className="mb-2.5 flex flex-col gap-2.5 lg:mb-4">
+            <p className="my-3 text-sm font-medium lg:text-base">
+              {currSoal?.soal}
+            </p>
+            <p className="mb-6 text-sm font-medium lg:text-base">Jawab:</p>
+            <form className="mb-6 flex flex-col gap-2.5 lg:mb-4">
               {currSoal?.opsi.map((option, idx) => (
                 <div
-                  className="flex cursor-pointer gap-2.5 text-sm font-medium md:text-base"
+                  className="flex cursor-pointer gap-2.5 text-xs font-medium md:text-base lg:text-sm"
                   key={idx}
                 >
                   <input
@@ -233,7 +251,7 @@ const QuizPage = () => {
           {currIdx !== 1 && (
             <button
               onClick={handlePrev}
-              className="w-fit rounded-md border border-primary bg-white px-6 py-3 font-medium text-primary hover:bg-primaryHover hover:text-white"
+              className="col-start-1 w-fit rounded-md border border-primary bg-white px-2 py-1.5 text-xs font-medium text-primary hover:bg-primaryHover hover:text-white lg:px-6 lg:py-3 lg:text-base"
             >
               Soal Sebelumnya
             </button>
@@ -242,7 +260,7 @@ const QuizPage = () => {
             {currIdx !== 10 ? (
               <button
                 onClick={handleNext}
-                className="w-fit rounded-md bg-primary px-6 py-3 text-white hover:bg-primaryHover"
+                className="w-fit rounded-md bg-primary px-2 py-1.5 text-xs text-white hover:bg-primaryHover lg:px-6 lg:py-3 lg:text-base"
               >
                 Soal Selanjutnya
               </button>
@@ -252,7 +270,7 @@ const QuizPage = () => {
                   recordAnswer();
                   setIsPopUp(true);
                 }}
-                className="w-fit rounded-md bg-primary px-12 py-3 text-white hover:bg-primaryHover"
+                className="w-fit rounded-md bg-primary px-6 py-1.5 text-xs text-white hover:bg-primaryHover lg:px-6 lg:py-3 lg:text-base"
               >
                 Selesai
               </button>
@@ -267,15 +285,15 @@ const QuizPage = () => {
             alt="maskot"
             width={80}
             height={130}
-            className="absolute -bottom-4 left-[45%]"
+            className="absolute -bottom-4 left-[45%] hidden lg:block"
           />
         </div>
         {/* navigasi soal */}
         <div className="mb-10">
-          <h3 className="mb-4 text-xl font-semibold text-neutral950">
+          <h3 className="mb-4 text-base font-semibold text-neutral950 lg:text-xl">
             Navigasi Kuis
           </h3>
-          <div className="flex gap-3">
+          <div className="flex gap-1.5 lg:gap-3">
             {dataSoal?.map((soal, idx) => (
               <QuizNumber
                 key={idx}

@@ -11,20 +11,22 @@ type PropsType = {
 
 const BigCard = ({ img, title, url, year }: PropsType) => {
   return (
-    <div className="rounded-xl">
-      <div className="relative h-[314px] w-full rounded-lg">
+    <div className="w-[300px] rounded-xl lg:w-full">
+      <div className="relative h-[150px] rounded-lg lg:h-[314px]">
         <Image src={img} alt="burung" fill className="object-cover" />
       </div>
       <div className="p-4 pl-0">
-        <span className="mb-2 inline-block text-sm font-medium text-blue-500">
+        <span className="mb-2 inline-block text-xs font-medium text-blue-500 lg:text-sm">
           {year}
         </span>
-        <h2 className="mb-4 text-2xl font-semibold text-neutral950">{title}</h2>
+        <h2 className="mb-4 font-semibold text-neutral950 lg:text-2xl">
+          {title}
+        </h2>
         <a
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex w-fit items-center gap-1.5 font-semibold text-info"
+          className="flex w-fit items-center gap-1.5 text-sm font-semibold text-info lg:text-base"
         >
           Baca Selengkapnya
         </a>

@@ -71,8 +71,10 @@ const Map = () => {
       center={[-8.5802, 116.10089]}
       zoom={9}
       maxBounds={[
+        // [-8.1571, 119.4598], // atas kanan
+        // [-8.8742, 115.6421], // bawah kiri
         [-8.1571, 119.4598], // atas kanan
-        [-8.8742, 115.6421], // bawah kiri
+        [-9, 115.6421], // bawah kiri
       ]}
       scrollWheelZoom={false}
       doubleClickZoom={true}
