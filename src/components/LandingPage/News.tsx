@@ -62,7 +62,7 @@ const News = () => {
                   src={data.image}
                   alt="gambar artikel"
                   fill
-                  objectFit="cover"
+                  style={{ objectFit: "contain" }}
                 />
               </div>
               <div className="p-4">

@@ -16,6 +16,7 @@ const Map = () => {
             alt="map"
             fill
             style={{ objectFit: "fill" }}
+            sizes="(min-width: 1040px) calc(66.68vw - 134px), calc(100vw - 32px)"
           />
           <div className="absolute bottom-0 top-0 w-full bg-gray-900 opacity-50"></div>
         </div>

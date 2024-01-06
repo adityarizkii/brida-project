@@ -23,8 +23,10 @@ const Header = (props: propsType) => {
   const router = useRouter();
 
   useEffect(() => {
-    const pathname = path.split("/");
-    setPathname(pathname);
+    if (path) {
+      const pathname = path.split("/");
+      setPathname(pathname);
+    }
   }, [path]);
 
   const handleLogout = () => {
