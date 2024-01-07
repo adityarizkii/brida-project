@@ -90,26 +90,30 @@ const DetailSatwaPage = () => {
       <div className="pt-[120px] lg:px-[100px] lg:pt-[150px]">
         <div className="grid md:grid-cols-2">
           <div className="left mb-6 lg:mb-[60px]">
-            <div className="mx-auto mb-6 flex max-w-[300px] items-center justify-center gap-3 overflow-hidden rounded-md border px-2 py-4 shadow-xl md:max-w-[370px] md:py-12 lg:mb-10 lg:max-w-[600px] lg:gap-5 lg:px-8">
-              <div className="rounded-md border p-1 hover:bg-slate-300 lg:p-2">
-                <Link href={"/map/detail/" + prevIdx}>
-                  <IoIosArrowBack size={24} />
-                </Link>
-              </div>
-              <div className="relative h-[200px] w-[200px] lg:h-[300px] lg:w-[300px] ">
-                <Image
-                  src={filteredData ? filteredData.image : "/img-not-found.png"}
-                  alt="satwa"
-                  fill
-                  style={{ objectFit: "fill" }}
-                  sizes="100%"
-                  priority
-                />
-              </div>
-              <div className="rounded-md border p-1 hover:bg-slate-300 lg:p-2">
-                <Link href={"/map/detail/" + nextIdx}>
-                  <IoIosArrowForward size={24} />
-                </Link>
+            <div className="flex justify-center">
+              <div className="mb-6 flex items-center justify-center gap-3 overflow-hidden rounded-md border px-2 py-4 shadow-xl md:max-w-[370px] md:py-12 lg:mb-10 lg:max-w-[600px] lg:gap-5 lg:px-8">
+                <div className="rounded-md border p-1 hover:bg-slate-300 lg:p-2">
+                  <Link href={"/map/detail/" + prevIdx}>
+                    <IoIosArrowBack size={20} />
+                  </Link>
+                </div>
+                <div className="relative h-[200px] w-[200px] lg:h-[300px] lg:w-[300px] ">
+                  <Image
+                    src={
+                      filteredData ? filteredData.image : "/img-not-found.png"
+                    }
+                    alt="satwa"
+                    fill
+                    style={{ objectFit: "fill" }}
+                    sizes="100%"
+                    priority
+                  />
+                </div>
+                <div className="rounded-md border p-1 hover:bg-slate-300 lg:p-2">
+                  <Link href={"/map/detail/" + nextIdx}>
+                    <IoIosArrowForward size={20} />
+                  </Link>
+                </div>
               </div>
             </div>
             <div className="mx-auto grid max-w-[300px] grid-cols-2 text-center font-bold text-neutral950 lg:max-w-none lg:text-2xl">
@@ -117,8 +121,8 @@ const DetailSatwaPage = () => {
               <h3 className="">{filteredData?.location}</h3>
             </div>
           </div>
-          <div className="right">
-            <div className="mx-auto max-w-[300px] overflow-y-scroll rounded-md border p-4 text-sm font-medium tracking-wide shadow-2xl md:max-w-[350px] lg:max-h-[400px] lg:max-w-[500px] lg:p-8 lg:text-base">
+          <div className="right px-4">
+            <div className=" overflow-y-scroll rounded-md border p-4 text-sm font-medium tracking-wide shadow-2xl md:max-w-[350px] lg:max-h-[400px] lg:max-w-[500px] lg:p-8 lg:text-base">
               {filteredData?.description}
             </div>
           </div>
